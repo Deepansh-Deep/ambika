@@ -247,6 +247,7 @@ footer a{color:var(--muted)}
 .st.in{background:var(--red);color:#fff}
 .st.done{background:#EEE8DF;color:#8A8178}
 .st.skipped{background:var(--amber-l);color:var(--amber)}
+.st.prio{background:#FBE9C6;color:#7A4B00}
 .st.cancelled{background:#F1E4E3;color:#9B6B68}
 .src{font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:4px}
 .it.in{border-color:var(--red);box-shadow:0 0 0 3px rgba(161,29,33,.1)}
@@ -337,6 +338,8 @@ const DEFAULTS = {
   offDays: [],      // ISO weekday numbers 1=Mon … 7=Sun
   forceOpenDay: "", // day key on which booking is opened early by an owner
   notice: "",
+  closedDay: "",  // day key on which the doctor is not sitting (owner or admin sets it)
+  closedMsg: "",
 };
 
 /* ---------------------------------------------------------------- i18n */
@@ -346,13 +349,13 @@ const TXT = {
     liveBoard: "Live queue", nowServing: "Now with doctor", notStarted: "Not started yet",
     booked: "Booked", waiting: "Waiting", done: "Done",
     doctorSits: "Doctor sits", open: "Booking open", before: "Booking opens at {t}", after: "Booking closed for today",
-    paused: "Booking paused by clinic", off: "Clinic closed today", full: "All numbers for today are booked",
+    paused: "Booking paused by clinic", closed: "Doctor is not sitting today. Booking is closed.", tomorrow: "Tomorrow", off: "Clinic closed today", full: "All numbers for today are booked",
     bookTitle: "Get your number", bookSub: "Numbers are given in order of booking. Book first, get an earlier number.",
     name: "Patient's name", namePh: "e.g. Sunita Devi", place: "Coming from (village / area)", placePh: "e.g. Chas, Bermo, Jainamore",
     phone: "Mobile number", phonePh: "10-digit number",
     submit: "Book my number", booking: "Booking…",
     errName: "Please enter the patient's name", errPlace: "Please enter where you are coming from", errPhone: "Enter a valid 10-digit mobile number",
-    closedErr: "Booking is not open right now.", netErr: "Could not connect. Check your internet and try again.",
+    phoneLimit: "This mobile number already has 2 numbers today. Please call the clinic for more.", closedErr: "Booking is not open right now.", netErr: "Could not connect. Check your internet and try again.",
     yourNumber: "Your number", ahead: "{n} patients before you", aheadOne: "1 patient before you", next: "You're next. Please be at the clinic.",
     turn: "It's your turn. Please go in.", est: "Expected around {t}", doneMsg: "Consultation complete. Get well soon!",
     skippedMsg: "Your number was called but you were not present. Please meet the reception.",
@@ -372,13 +375,13 @@ const TXT = {
     liveBoard: "लाइव कतार", nowServing: "अभी डॉक्टर के पास", notStarted: "अभी शुरू नहीं हुआ",
     booked: "बुक हुए", waiting: "बाकी", done: "हो गए",
     doctorSits: "डॉक्टर बैठते हैं", open: "बुकिंग चालू है", before: "बुकिंग {t} बजे खुलेगी", after: "आज की बुकिंग बंद हो गई",
-    paused: "क्लिनिक ने बुकिंग अभी रोकी है", off: "आज क्लिनिक बंद है", full: "आज के सभी नंबर बुक हो गए",
+    paused: "क्लिनिक ने बुकिंग अभी रोकी है", closed: "आज डॉक्टर नहीं बैठेंगे। बुकिंग बंद है।", tomorrow: "कल", off: "आज क्लिनिक बंद है", full: "आज के सभी नंबर बुक हो गए",
     bookTitle: "अपना नंबर लगाएं", bookSub: "जो पहले बुक करेगा, उसे पहले का नंबर मिलेगा।",
     name: "मरीज़ का नाम", namePh: "जैसे: सुनीता देवी", place: "कहाँ से आ रहे हैं (गाँव / मोहल्ला)", placePh: "जैसे: चास, बेरमो, जैनामोड़",
     phone: "मोबाइल नंबर", phonePh: "10 अंकों का नंबर",
     submit: "मेरा नंबर लगाएं", booking: "नंबर लग रहा है…",
     errName: "कृपया मरीज़ का नाम लिखें", errPlace: "कृपया लिखें कि कहाँ से आ रहे हैं", errPhone: "सही 10 अंकों का मोबाइल नंबर डालें",
-    closedErr: "अभी बुकिंग चालू नहीं है।", netErr: "कनेक्शन नहीं हो पाया। इंटरनेट देखकर फिर कोशिश करें।",
+    phoneLimit: "इस मोबाइल नंबर से आज 2 नंबर लग चुके हैं। और के लिए क्लिनिक में कॉल करें।", closedErr: "अभी बुकिंग चालू नहीं है।", netErr: "कनेक्शन नहीं हो पाया। इंटरनेट देखकर फिर कोशिश करें।",
     yourNumber: "आपका नंबर", ahead: "आपसे पहले {n} मरीज़", aheadOne: "आपसे पहले 1 मरीज़", next: "अगला नंबर आपका है, क्लिनिक में रहें।",
     turn: "आपकी बारी है, अंदर जाइए।", est: "लगभग {t} बजे", doneMsg: "आपका दिखाना हो गया। जल्दी स्वस्थ हों!",
     skippedMsg: "आपका नंबर पुकारा गया पर आप मौजूद नहीं थे। कृपया काउंटर पर मिलें।",
@@ -408,6 +411,10 @@ const nowMin = () => { const d = istDate(); return d.getUTCHours() * 60 + d.getU
 const isoDow = () => { const d = istDate().getUTCDay(); return d === 0 ? 7 : d; };
 function dayKeyFor(s) {
   const d = istDate(-s.resetMin);
+  return String(d.getUTCFullYear() * 10000 + (d.getUTCMonth() + 1) * 100 + d.getUTCDate());
+}
+function nextDayKey(key) {
+  const d = new Date(Date.UTC(+key.slice(0, 4), +key.slice(4, 6) - 1, +key.slice(6, 8) + 1));
   return String(d.getUTCFullYear() * 10000 + (d.getUTCMonth() + 1) * 100 + d.getUTCDate());
 }
 function fmt(min) {
@@ -503,6 +510,11 @@ function makeDemoBackend() {
       const d = day(k);
       const g = phone ? await guardId(phone, name) : null;
       if (g && d.guard[g]) return { no: d.guard[g], existing: true };
+      if (by === "online" && phone) {
+        d.phones ||= {};
+        if ((d.phones[phone] || 0) >= 2) throw Object.assign(new Error("phone-limit"), { code: "phone-limit" });
+        d.phones[phone] = (d.phones[phone] || 0) + 1;
+      }
       const no = d.next + 1; d.next = no;
       d.tokens[no] = { no, status: "waiting", by, createdAt: Date.now(), at: 0 };
       d.contacts[no] = { name, place, phone: phone || "" };
@@ -516,6 +528,7 @@ function makeDemoBackend() {
       save();
     },
     async saveSettings(s) { st.settings = { ...s }; delete st.settings._unset; save(); },
+    async patchSettings(p) { st.settings = { ...(st.settings || {}), ...p }; save(); },
     async saveRoles(r) { st.roles = r; save(); },
     async cleanup(k) { for (const key of Object.keys(st.days)) if (key !== k) delete st.days[key]; save(); },
     async resetDemo() { localStorage.removeItem(LS); location.reload(); },
@@ -565,7 +578,7 @@ async function makeFirebaseBackend(cfg) {
     },
     async register(k, { name, place, phone }, by) {
       const g = phone ? await guardId(phone, name) : null;
-      return runTransaction(db, async (tx) => {
+      const attempt = (slot) => runTransaction(db, async (tx) => {
         const dref = doc(db, "days", k);
         const gref = g ? doc(db, "days", k, "guard", g) : null;
         const ds = await tx.get(dref);
@@ -576,8 +589,15 @@ async function makeFirebaseBackend(cfg) {
         tx.set(doc(db, "days", k, "tokens", String(no)), { no, status: "waiting", by, createdAt: serverTimestamp() });
         tx.set(doc(db, "days", k, "contacts", String(no)), { name, place, phone: phone || "" });
         if (gref) tx.set(gref, { no });
+        if (slot) tx.set(doc(db, "days", k, "guard", "ph_" + phone + "_" + slot), { no }); // max 2 numbers per phone per day
         return { no, existing: false };
       });
+      if (by !== "online" || !phone) return attempt(0); // walk-ins added by staff are not limited
+      try { return await attempt(1); } catch (e) { if (!String(e.code || "").includes("permission")) throw e; }
+      try { return await attempt(2); } catch (e) {
+        if (String(e.code || "").includes("permission")) throw Object.assign(new Error("phone-limit"), { code: "phone-limit" });
+        throw e;
+      }
     },
     async adminWrite(k, changes, current) {
       const b = writeBatch(db);
@@ -586,6 +606,7 @@ async function makeFirebaseBackend(cfg) {
       await b.commit();
     },
     async saveSettings(s) { const c = { ...s }; delete c._unset; await setDoc(doc(db, "config", "settings"), c); },
+    async patchSettings(p) { await setDoc(doc(db, "config", "settings"), p, { merge: true }); },
     async saveRoles(r) { await setDoc(doc(db, "config", "roles"), r); },
     async cleanup(k) {
       // Daily wipe: delete every older day (tokens, contacts, guards, day doc).
@@ -624,6 +645,7 @@ const t = (k, vars = {}) => (TXT[S.lang][k] ?? TXT.en[k] ?? k).replace(/\{(\w+)\
 
 function regState(s, key, next) {
   if (s._unset) return "paused";
+  if (s.closedDay === key) return "closed";
   if (s.paused) return "paused";
   if (s.maxTokens > 0 && next >= s.maxTokens) return "full";
   if (s.forceOpenDay === key) return "open";
@@ -751,8 +773,13 @@ function counts() {
   S.tokens.forEach((x) => c[x.status] = (c[x.status] || 0) + 1);
   return c;
 }
+// Queue order: priority patients (set by an owner) first, in the order they were bumped, then by booking number.
+const rankKey = (x) => (x.prio ? [0, x.prio, x.no] : [1, 0, x.no]);
+const byRank = (a, b) => { const ka = rankKey(a), kb = rankKey(b); return ka[0] - kb[0] || ka[1] - kb[1] || ka[2] - kb[2]; };
 function aheadOf(no) {
-  return S.tokens.filter((x) => x.no < no && (x.status === "waiting" || x.status === "in")).length;
+  const me = S.tokens.find((x) => x.no === no);
+  if (!me) return S.tokens.filter((x) => x.no < no && (x.status === "waiting" || x.status === "in")).length;
+  return S.tokens.filter((x) => x !== me && (x.status === "in" || (x.status === "waiting" && byRank(x, me) < 0))).length;
 }
 function estFor(ahead) {
   const s = S.settings; const base = Math.max(nowMin(), s.sitFrom);
@@ -763,7 +790,11 @@ function updateHome(bump) {
   if (!$("#board")) return;
   const s = S.settings, c = counts(), cur = S.day.current;
   const { rs, text } = regLabel();
-  $("#notice").innerHTML = s.notice ? `<div class="notice">${ICON.info}<span>${esc(s.notice)}</span></div>` : "";
+  const msgs = [];
+  if (rs === "closed") msgs.push(s.closedMsg ? `${t("closed")} ${s.closedMsg}` : t("closed"));
+  else if (s.closedDay && s.closedDay === nextDayKey(S.key)) msgs.push(`${t("tomorrow")}: ${s.closedMsg || t("closed")}`);
+  if (s.notice) msgs.push(s.notice);
+  $("#notice").innerHTML = msgs.map((m) => `<div class="notice">${ICON.info}<span>${esc(m)}</span></div>`).join("");
   $("#board").innerHTML = `
     <div class="b-head"><span class="live"><i></i>LIVE</span><span>${t("liveBoard")}</span><span class="date">${keyLabel(S.key, S.lang)}</span></div>
     <div class="b-main">
@@ -778,7 +809,7 @@ function updateHome(bump) {
         <div><b>${c.done}</b><span>${t("done")}</span></div>
       </div>
     </div>
-    <div class="b-foot"><span class="pill ${rs === "open" ? "open" : "closed"}">${text}</span><span class="sits">${t("doctorSits")} ${fmt(s.sitFrom)}–${fmt(s.sitTo)}</span></div>`;
+    <div class="b-foot"><span class="pill ${rs === "open" ? "open" : "closed"}">${text}</span>${rs === "closed" ? "" : `<span class="sits">${t("doctorSits")} ${fmt(s.sitFrom)}–${fmt(s.sitTo)}</span>`}</div>`;
 
   // my tokens
   const mine = S.mine.filter((m) => m.key === S.key);
@@ -835,7 +866,8 @@ async function onBook(e) {
     updateHome();
   } catch (err) {
     console.error(err);
-    toast(String(err.code || "").includes("permission") ? t("closedErr") : t("netErr"));
+    if (err.code === "phone-limit" && regState(S.settings, S.key, S.day.next) === "open") toast(t("phoneLimit"));
+    else toast(String(err.code || "").includes("permission") || err.code === "phone-limit" ? t("closedErr") : t("netErr"));
   } finally { btn.disabled = false; btn.querySelector("span").textContent = t("submit"); }
 }
 
@@ -974,14 +1006,15 @@ function renderConsole() {
 const tokenBy = (no) => S.tokens.find((x) => x.no === no);
 const contactOf = (no) => S.contacts[no] || {};
 const inTok = () => S.tokens.find((x) => x.status === "in");
-const nextWaiting = (excl) => S.tokens.filter((x) => x.status === "waiting" && x.no !== excl).sort((a, b) => a.no - b.no)[0];
+const nextWaiting = (excl) => S.tokens.filter((x) => x.status === "waiting" && x.no !== excl).sort(byRank)[0];
 
 function queueHTML() {
   const c = counts(), cur = inTok(), cc = cur ? contactOf(cur.no) : null;
-  const ups = S.tokens.filter((x) => x.status === "waiting").slice(0, 4);
+  const ups = S.tokens.filter((x) => x.status === "waiting").sort(byRank).slice(0, 4);
   const { rs, text } = regLabel();
   const f = S.filter;
-  const list = S.tokens.filter((x) => f === "all" ? true : f === "active" ? (x.status === "waiting" || x.status === "in") : x.status === f);
+  const list = S.tokens.filter((x) => f === "all" ? true : f === "active" ? (x.status === "waiting" || x.status === "in") : x.status === f)
+    .sort(f === "active" ? (a, b) => ((b.status === "in") - (a.status === "in")) || byRank(a, b) : (a, b) => a.no - b.no);
   const lastDone = S.tokens.filter((x) => x.status === "done" || x.status === "skipped").sort((a, b) => b.at - a.at)[0];
   return `<div class="grid2">
     <div>
@@ -1007,9 +1040,10 @@ function queueHTML() {
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h2 style="font-family:var(--serif);font-weight:600;font-size:19px">Online booking</h2><span class="pill ${rs === "open" ? "open" : "closed"}" style="margin-left:auto">${text}</span></div>
         <p class="sub">Window ${fmt(S.settings.openMin)} – ${fmt(S.settings.closeMin)} · doctor ${fmt(S.settings.sitFrom)} – ${fmt(S.settings.sitTo)}${S.settings.maxTokens ? ` · max ${S.settings.maxTokens}` : ""}</p>
         <div class="regctl">
-          ${isOwner() ? `
-            ${S.settings.paused ? `<button class="sbtn green" data-reg="resume">Resume booking</button>` : `<button class="sbtn red" data-reg="pause">Pause booking</button>`}
-            ${S.settings.forceOpenDay === S.key ? `<button class="sbtn" data-reg="unforce">Back to normal timing</button>` : `<button class="sbtn" data-reg="force">Open now for today</button>`}` : `<span class="hint">Only owners can change booking.</span>`}
+          ${S.settings.paused ? `<button class="sbtn green" data-reg="resume">Resume booking</button>` : `<button class="sbtn red" data-reg="pause">Pause booking</button>`}
+          ${S.settings.closedDay && S.settings.closedDay >= S.key ? `<button class="sbtn green" data-reg="reopen">Cancel closure (${S.settings.closedDay === S.key ? "today" : "tomorrow"})</button>` : `<button class="sbtn red" data-reg="closeday">Doctor not sitting / Holiday</button>`}
+          ${isOwner() ? (S.settings.forceOpenDay === S.key ? `<button class="sbtn" data-reg="unforce">Back to normal timing</button>` : `<button class="sbtn" data-reg="force">Open now for today</button>`) : ""}
+          <button class="sbtn" id="announce">Announcement</button>
           <button class="sbtn dark" id="walkin" style="margin-left:auto">+ Add walk-in</button>
         </div>
       </section>
@@ -1026,7 +1060,7 @@ function rowHTML(x) {
   const time = x.createdAt ? new Date(x.createdAt + IST * 60000).toISOString().slice(11, 16) : "";
   return `<div class="it ${x.status}">
     <div class="no">${x.no}</div>
-    <div><div class="nm">${esc(ct.name || "—")}<span class="st ${x.status}">${x.status === "skipped" ? "absent" : x.status === "in" ? "with doctor" : x.status}</span></div>
+    <div><div class="nm">${esc(ct.name || "—")}<span class="st ${x.status}">${x.status === "skipped" ? "absent" : x.status === "in" ? "with doctor" : x.status}</span>${x.prio && x.status === "waiting" ? `<span class="st prio">priority</span>` : ""}</div>
       <div class="meta">${esc(ct.place || "")}${ct.phone ? ` · <a class="nw" href="tel:+91${esc(ct.phone)}">${esc(ct.phone)}</a>` : ""}${time ? ` · <span class="nw">${fmt(fromHHMM(time))}</span>` : ""}<span class="src">${x.by === "walkin" ? "walk-in" : "online"}</span></div></div>
     <div class="acts">${x.status === "waiting" ? `<button class="ib" title="Call now" data-act="call" data-no="${x.no}">${ICON.call}</button>` : ""}<button class="ib" data-menu="${x.no}" title="More">${ICON.dots}</button></div>
   </div>`;
@@ -1055,6 +1089,7 @@ const A = {
     ch[last.no] = { status: "in" };
     await backend.adminWrite(S.key, ch, last.no); toast(`Back to #${last.no}`);
   },
+  async priority(no, on) { await backend.adminWrite(S.key, { [no]: { prio: on ? Date.now() : 0 } }); },
   async set(no, status) {
     const x = tokenBy(no); const ch = { [no]: { status } };
     const current = x?.status === "in" && status !== "in" ? 0 : status === "in" ? no : undefined;
@@ -1068,17 +1103,25 @@ function bindQueue() {
   root.querySelectorAll("[data-f]").forEach((b) => b.onclick = () => { S.filter = b.dataset.f; renderConsole(); });
   root.querySelectorAll("[data-act=call]").forEach((b) => b.onclick = () => run(() => A.call(+b.dataset.no)));
   root.querySelectorAll("[data-reg]").forEach((b) => b.onclick = () => {
-    const s = { ...S.settings }; const a = b.dataset.reg;
-    if (a === "pause") s.paused = true; if (a === "resume") s.paused = false;
-    if (a === "force") { s.forceOpenDay = S.key; s.paused = false; } if (a === "unforce") s.forceOpenDay = "";
-    run(() => backend.saveSettings(s), a === "pause" ? "Booking paused" : a === "resume" ? "Booking resumed" : a === "force" ? "Booking open for today" : "Back to normal timing");
+    const a = b.dataset.reg;
+    if (a === "closeday") return openCloseDay();
+    const p = {};
+    if (a === "pause") p.paused = true;
+    if (a === "resume") p.paused = false;
+    if (a === "reopen") { p.closedDay = ""; p.closedMsg = ""; }
+    if (a === "force") { p.forceOpenDay = S.key; p.paused = false; }
+    if (a === "unforce") p.forceOpenDay = "";
+    const msg = { pause: "Booking paused", resume: "Booking resumed", reopen: "Booking reopened", force: "Booking open for today", unforce: "Back to normal timing" }[a];
+    run(() => backend.patchSettings(p), msg);
   });
+  $("#announce").onclick = openAnnounce;
   $("#walkin").onclick = openWalkin;
   root.querySelectorAll("[data-menu]").forEach((b) => b.onclick = (e) => {
     e.stopPropagation(); closeMenu();
     const no = +b.dataset.menu, x = tokenBy(no); if (!x) return;
     const items = [];
     if (x.status !== "in") items.push(["call", "Call now (with doctor)"]);
+    if (isOwner() && x.status === "waiting") items.push(x.prio ? ["unprio", "Remove priority"] : ["prio", "Move to top (priority)"]);
     if (x.status !== "done") items.push(["done", "Mark done"]);
     if (x.status === "waiting" || x.status === "in") items.push(["skipped", "Mark absent"]);
     if (x.status !== "waiting") items.push(["waiting", "Put back in queue"]);
@@ -1092,6 +1135,7 @@ function bindQueue() {
     menuEl.querySelectorAll("[data-m]").forEach((m) => m.onclick = async () => {
       const k = m.dataset.m; closeMenu();
       if (k === "call") return run(() => A.call(no));
+      if (k === "prio" || k === "unprio") return run(() => A.priority(no, k === "prio"), k === "prio" ? `#${no} moved to the top` : "Priority removed");
       if (k === "cancelled" && !(await confirmBox(`Cancel #${no}?`, "The patient will see that their booking was cancelled. The number is not reused."))) return;
       run(() => A.set(no, k));
     });
@@ -1114,6 +1158,36 @@ function openWalkin() {
     try { const r = await backend.register(S.key, { name, place, phone }, "walkin"); closeModal(); toast(r.existing ? `Already booked: #${r.no}` : `Walk-in given #${r.no}`); }
     catch (err) { toast("Failed: " + (err.code || err.message)); }
   };
+}
+
+function openCloseDay() {
+  const tom = nextDayKey(S.key);
+  const sc = openModal(`<div class="sheet"><h3>Doctor not sitting / Holiday</h3><p>Online booking is closed for that day and patients see your message. It reopens by itself the next day.</p>
+    <form id="cf" novalidate>
+      <div class="field"><label for="c-day">Which day?</label><select class="inp" id="c-day"><option value="${S.key}">Today (${keyLabel(S.key, "en")})</option><option value="${tom}">Tomorrow (${keyLabel(tom, "en")})</option></select></div>
+      <div class="field"><label for="c-msg">Message for patients (optional)</label><input class="inp" id="c-msg" maxlength="160" placeholder="e.g. Doctor is out of station. Back on Monday."></div>
+      <div class="btns"><button class="btn primary block" type="submit">Close booking</button><button class="btn ghost block" type="button" data-close>Cancel</button></div>
+    </form></div>`);
+  sc.querySelector("#cf").onsubmit = async (e) => {
+    e.preventDefault();
+    const p = { closedDay: $("#c-day").value, closedMsg: $("#c-msg").value.trim().slice(0, 160) };
+    try { await backend.patchSettings(p); closeModal(); toast("Booking closed for " + (p.closedDay === S.key ? "today" : "tomorrow")); }
+    catch (err) { toast("Failed: " + (err.code || err.message)); }
+  };
+}
+function openAnnounce() {
+  const sc = openModal(`<div class="sheet"><h3>Announcement</h3><p>Shown at the top of the patient page until you change or clear it. Use it for breaks, delays and changed timings.</p>
+    <form id="af" novalidate>
+      <div class="field"><input class="inp" id="a-msg" maxlength="160" value="${esc(S.settings.notice)}" placeholder="e.g. Doctor is on a short break, back in 20 minutes"></div>
+      <div class="btns"><button class="btn primary block" type="submit">Publish</button><button class="btn ghost block" type="button" id="a-clear">Clear announcement</button><button class="btn ghost block" type="button" data-close>Cancel</button></div>
+    </form></div>`);
+  setTimeout(() => $("#a-msg")?.focus(), 50);
+  const save = async (notice) => {
+    try { await backend.patchSettings({ notice }); closeModal(); toast(notice ? "Announcement published" : "Announcement cleared"); }
+    catch (err) { toast("Failed: " + (err.code || err.message)); }
+  };
+  sc.querySelector("#af").onsubmit = (e) => { e.preventDefault(); save($("#a-msg").value.trim().slice(0, 160)); };
+  sc.querySelector("#a-clear").onclick = () => save("");
 }
 
 /* ---------------- settings */
