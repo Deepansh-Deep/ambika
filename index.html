@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ambika Homoeopathy</title>
+<meta name="description" content="Book your number online at Ambika Homoeopathy, Jainamore, Bokaro. Live queue, Dr. N. K. Prajapati, BHMS.">
+<meta name="theme-color" content="#7B1216">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Mukta:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5EFE4; --card:#FFFDF8; --ink:#1E1915; --muted:#6E645A; --line:#E6DccE;
+  --red:#A11D21; --red-d:#741115; --red-l:#F8E6E3;
+  --green:#2E5E4E; --green-l:#E3EEE8; --gold:#C49A3A; --amber:#B7791F; --amber-l:#FBF0DA;
+  --shadow:0 1px 2px rgba(60,30,10,.06),0 8px 28px -10px rgba(60,30,10,.18);
+  --r:22px;
+  --serif:"Fraunces",Georgia,serif; --deva:"Tiro Devanagari Hindi","Mukta",serif; --sans:"Mukta",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:16.5px;line-height:1.45;min-height:100vh;
+  background-image:radial-gradient(1200px 500px at 110% -10%,rgba(161,29,33,.08),transparent 60%),radial-gradient(900px 500px at -20% 30%,rgba(46,94,78,.07),transparent 60%);}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit}
+.wrap{max-width:540px;margin:0 auto;padding:0 16px calc(40px + env(safe-area-inset-bottom))}
+.wrap.wide{max-width:980px}
+.hi .h-deva,.h-deva{font-family:var(--deva)}
+
+/* demo strip */
+.demo{background:#22201d;color:#f3e9d6;font-size:13px;text-align:center;padding:7px 12px calc(7px);padding-top:calc(7px + env(safe-area-inset-top))}
+.demo b{color:#f0c674}
+
+/* header */
+.top{display:flex;align-items:center;gap:12px;padding:18px 0 14px;padding-top:calc(18px + env(safe-area-inset-top))}
+.demo + .wrap .top{padding-top:18px}
+.logo{width:48px;height:48px;flex:none;border-radius:14px;background:linear-gradient(145deg,var(--red),var(--red-d));display:grid;place-items:center;box-shadow:0 6px 16px -6px rgba(116,17,21,.6)}
+.brand{flex:1;min-width:0}
+.brand .en{font-family:var(--serif);font-weight:700;font-size:21px;letter-spacing:-.01em;line-height:1.1}
+.brand .hn{font-family:var(--deva);font-size:15px;color:var(--red);line-height:1.2;margin-top:2px}
+.lang{display:flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px;flex:none}
+.lang button{padding:5px 11px;border-radius:999px;font-size:14px;font-weight:600;color:var(--muted)}
+.lang button.on{background:var(--ink);color:#fff}
+
+.notice{background:var(--amber-l);border:1px solid #EBD3A4;color:#6B4A10;border-radius:16px;padding:12px 14px;margin-bottom:14px;display:flex;gap:10px;font-weight:500}
+
+/* live board */
+.board{position:relative;overflow:hidden;border-radius:26px;color:#FCEFE6;padding:18px 20px 16px;
+  background:radial-gradient(500px 220px at 85% 0%,rgba(255,200,150,.18),transparent 60%),linear-gradient(155deg,#A11D21 0%,#7B1216 55%,#5A0D10 100%);
+  box-shadow:0 20px 40px -18px rgba(90,13,16,.65)}
+.board:after{content:"";position:absolute;right:-40px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 30px rgba(255,255,255,.025),0 0 0 60px rgba(255,255,255,.02)}
+.b-head{display:flex;align-items:center;gap:10px;font-size:14px;opacity:.95}
+.live{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border-radius:999px;padding:3px 10px 3px 8px;font-weight:700;font-size:12px;letter-spacing:.08em}
+.live i{width:8px;height:8px;border-radius:50%;background:#7CF0A9;box-shadow:0 0 0 0 rgba(124,240,169,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,240,169,.6)}70%{box-shadow:0 0 0 9px rgba(124,240,169,0)}100%{box-shadow:0 0 0 0 rgba(124,240,169,0)}}
+.b-head .date{margin-left:auto;opacity:.8}
+.b-main{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:10px;position:relative;z-index:1}
+.lbl{font-size:14px;opacity:.85}
+.bignum{font-family:var(--serif);font-weight:600;font-size:96px;line-height:.95;letter-spacing:-.04em;font-variant-numeric:tabular-nums;margin-top:4px}
+.bignum small{font-size:40px;opacity:.55;margin-right:2px;letter-spacing:0}
+.bump{animation:bump .6s cubic-bezier(.2,1.4,.4,1)}
+@keyframes bump{0%{transform:scale(.7);opacity:.2}100%{transform:scale(1);opacity:1}}
+.b-sub{font-size:14px;opacity:.85;margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(3,auto);gap:4px 16px;text-align:right}
+.stats b{display:block;font-family:var(--serif);font-size:24px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.stats span{font-size:12px;opacity:.8}
+.b-foot{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;position:relative;z-index:1}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-weight:600;font-size:14px}
+.pill:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.board .pill.open{background:#E2F6EA;color:#17603A}
+.board .pill.closed{background:rgba(255,255,255,.14);color:#FFE3C8}
+.b-foot .sits{opacity:.9;margin-left:auto}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-top:16px}
+.card h2{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:-.01em;line-height:1.2}
+.hi .card h2{font-family:var(--deva);font-weight:400;font-size:23px}
+.card .sub{color:var(--muted);font-size:15px;margin-top:4px}
+
+/* my tokens */
+.mine{margin-top:16px;display:grid;gap:12px}
+.mtk{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;overflow:hidden}
+.mtk .stub{background:var(--green);color:#fff;padding:14px 18px;display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:104px;position:relative}
+.mtk .stub:after{content:"";position:absolute;right:-1px;top:8px;bottom:8px;border-right:2px dashed rgba(255,253,248,.9)}
+.mtk .stub span{font-size:12px;opacity:.85}
+.mtk .stub b{font-family:var(--serif);font-size:48px;line-height:1;font-weight:600}
+.mtk .body{padding:14px 16px}
+.mtk .who{font-weight:600;font-size:17px}
+.mtk .msg{font-size:15px;color:var(--muted);margin-top:2px}
+.mtk .big{font-size:18px;font-weight:600;color:var(--ink);margin-top:6px}
+.mtk.in .stub{background:var(--red);animation:glow 1.6s infinite alternate}
+@keyframes glow{to{background:#C4262B}}
+.mtk.in .big{color:var(--red)}
+.mtk.done .stub{background:#8A8178}
+.mtk.skipped .stub,.mtk.cancelled .stub{background:var(--amber)}
+.bar{height:6px;background:var(--line);border-radius:6px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#4E8C76);border-radius:6px;transition:width .6s}
+
+/* form */
+.field{margin-top:14px}
+.field label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+.inp{width:100%;height:54px;border-radius:14px;border:1.5px solid var(--line);background:#fff;padding:0 16px;font-size:17px;outline:none;transition:border-color .15s,box-shadow .15s}
+.inp:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(46,94,78,.12)}
+.inp.bad{border-color:var(--red);box-shadow:0 0 0 4px rgba(161,29,33,.1)}
+.phone{display:flex;align-items:stretch}
+.phone .cc{display:grid;place-items:center;padding:0 12px;border:1.5px solid var(--line);border-right:0;border-radius:14px 0 0 14px;background:#F8F3EA;font-weight:600;color:var(--muted)}
+.phone .inp{border-radius:0 14px 14px 0}
+.err{color:var(--red);font-size:14px;margin-top:5px;display:none}
+.err.show{display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:54px;padding:0 22px;border-radius:16px;font-weight:700;font-size:17px;transition:transform .08s,filter .15s,opacity .15s}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:linear-gradient(180deg,#B32328,var(--red-d));color:#fff;box-shadow:0 10px 22px -10px rgba(116,17,21,.8)}
+.btn.green{background:var(--green);color:#fff}
+.btn.ghost{background:#fff;border:1.5px solid var(--line)}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.closedbox{margin-top:14px;background:#F6F1E8;border:1px dashed #D9CBB5;border-radius:16px;padding:14px 16px;color:var(--muted);font-size:15px;display:flex;gap:10px;align-items:flex-start}
+fieldset{border:0}
+fieldset[disabled] .inp{background:#F7F3EC}
+
+/* queue chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.chip{min-width:42px;height:42px;padding:0 8px;border-radius:12px;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:17px;background:#fff;border:1.5px solid var(--line);font-variant-numeric:tabular-nums}
+.chip.done{background:#EFEAE2;color:#A39A8F;border-color:#EFEAE2;text-decoration:line-through;text-decoration-thickness:1.5px}
+.chip.in{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 6px 14px -6px rgba(161,29,33,.8)}
+.chip.skipped{background:var(--amber-l);color:var(--amber);border-color:#F0D9A8}
+.chip.cancelled{opacity:.35}
+.chip.me{outline:2.5px solid var(--green);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:4px;border:1.5px solid var(--line);background:#fff}
+.legend i.in{background:var(--red);border-color:var(--red)}
+.legend i.done{background:#EFEAE2;border-color:#EFEAE2}
+.legend i.skipped{background:var(--amber-l);border-color:#F0D9A8}
+.legend i.me{outline:2px solid var(--green);outline-offset:1px}
+.empty{color:var(--muted);font-size:15px;margin-top:10px}
+
+/* doctor */
+.doc{padding:0;overflow:hidden}
+.doc .photo{position:relative;aspect-ratio:4/3.3;background:#ddd center 18%/cover no-repeat}
+.doc .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(20,10,5,.78))}
+.doc .cap{position:absolute;left:18px;right:18px;bottom:14px;color:#fff;z-index:1}
+.doc .cap .k{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.doc .cap h3{font-family:var(--serif);font-weight:600;font-size:27px;line-height:1.1;margin-top:2px}
+.doc .cap p{font-size:14px;opacity:.9}
+.doc .info{padding:16px 18px 18px;display:grid;gap:12px}
+.row{display:flex;gap:12px;align-items:flex-start}
+.row .ic{width:36px;height:36px;border-radius:11px;background:var(--green-l);color:var(--green);display:grid;place-items:center;flex:none}
+.row .t{font-size:13px;color:var(--muted)}
+.row .v{font-weight:600}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.actions a{text-decoration:none}
+
+/* how */
+.steps{display:grid;gap:12px;margin-top:14px;counter-reset:s}
+.step{display:flex;gap:12px;align-items:center}
+.step b{counter-increment:s;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:14px;flex:none}
+.step b:before{content:counter(s)}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:26px;display:grid;gap:6px}
+footer a{color:var(--muted)}
+.install{display:none;margin-top:12px}
+
+/* modal + ticket */
+.scrim{position:fixed;inset:0;background:rgba(25,15,10,.55);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center;z-index:50;animation:fade .2s}
+@media(min-width:620px){.scrim{align-items:center}}
+@keyframes fade{from{opacity:0}}
+.sheet{width:100%;max-width:460px;background:var(--card);border-radius:26px 26px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));animation:up .28s cubic-bezier(.2,.9,.3,1);max-height:92vh;overflow:auto}
+@media(min-width:620px){.sheet{border-radius:26px}}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet h3{font-family:var(--serif);font-size:22px;font-weight:600}
+.hi .sheet h3{font-family:var(--deva);font-weight:400}
+.sheet p{color:var(--muted);margin-top:6px}
+.sheet .btns{display:grid;gap:10px;margin-top:18px}
+.ticket{position:relative;border-radius:22px;overflow:hidden;background:linear-gradient(160deg,#FFFDF8,#FBF3E6);border:1px solid var(--line)}
+.ticket .tt{background:linear-gradient(150deg,var(--red),var(--red-d));color:#FCEFE6;padding:14px 18px;display:flex;align-items:center;gap:10px}
+.ticket .tt .n{font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.02em}
+.ticket .tt .d{margin-left:auto;font-size:13px;opacity:.85}
+.ticket .tn{text-align:center;padding:18px 10px 8px}
+.ticket .tn .l{font-size:14px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.ticket .tn b{display:block;font-family:var(--serif);font-weight:700;font-size:112px;line-height:1;letter-spacing:-.04em;color:var(--red);font-variant-numeric:tabular-nums}
+.ticket .tw{text-align:center;font-weight:600;font-size:18px}
+.ticket .tw span{display:block;font-weight:400;font-size:15px;color:var(--muted)}
+.perf{position:relative;height:28px;margin-top:10px}
+.perf:before{content:"";position:absolute;left:18px;right:18px;top:50%;border-top:2px dashed var(--line)}
+.perf i{position:absolute;top:50%;width:28px;height:28px;border-radius:50%;background:var(--card);transform:translateY(-50%);border:1px solid var(--line)}
+.perf i:first-child{left:-15px}.perf i:last-child{right:-15px}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 18px 18px;text-align:center}
+.tf div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 6px}
+.tf b{display:block;font-family:var(--serif);font-size:20px}
+.tf span{font-size:12.5px;color:var(--muted)}
+.tnote{text-align:center;font-size:13px;color:var(--muted);margin-top:12px}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-weight:500;z-index:80;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);animation:up .25s;max-width:92vw;text-align:center}
+
+/* ===== admin ===== */
+.adm-top{display:flex;align-items:center;gap:12px;padding:16px 0;padding-top:calc(16px + env(safe-area-inset-top))}
+.adm-top .who{margin-left:auto;text-align:right;font-size:13px;color:var(--muted);line-height:1.25}
+.adm-top .who b{display:block;color:var(--ink);font-size:14px}
+.role{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--green-l);color:var(--green);margin-top:3px}
+.role.owner{background:var(--red-l);color:var(--red)}
+.tabs{display:flex;gap:6px;background:#EDE5D8;padding:4px;border-radius:14px;margin-bottom:16px}
+.tabs button{flex:1;height:40px;border-radius:11px;font-weight:600;color:var(--muted)}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.grid2{display:grid;gap:16px}
+@media(min-width:860px){.grid2{grid-template-columns:1.05fr 1fr;align-items:start}.grid2 .card{margin-top:0}}
+.now{background:linear-gradient(155deg,#A11D21,#6A0F13);color:#FCEFE6;border:0}
+.now .top2{display:flex;justify-content:space-between;align-items:center;font-size:14px;opacity:.9}
+.now .nn{display:flex;align-items:flex-end;gap:16px;margin-top:6px}
+.now .nn b{font-family:var(--serif);font-size:88px;line-height:.9;font-weight:600;letter-spacing:-.04em}
+.now .nn .p{padding-bottom:8px}
+.now .nn .p .nm{font-size:22px;font-weight:600;line-height:1.15}
+.now .nn .p .pl{opacity:.85}
+.now .nn .p a{color:#FFD9B8;font-weight:600;text-decoration:none}
+.now .ctrl{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-top:18px}
+.now .ctrl .btn{height:58px;font-size:16px;padding:0 10px}
+.now .ctrl .b1{background:#FFF6EC;color:var(--red-d)}
+.now .ctrl .b2,.now .ctrl .b3{background:rgba(255,255,255,.12);color:#fff}
+.upnext{margin-top:14px;font-size:14px;opacity:.9}
+.upnext span{display:inline-block;background:rgba(255,255,255,.12);border-radius:999px;padding:2px 10px;margin:4px 6px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.kpi b{font-family:var(--serif);font-size:26px;font-weight:600;display:block;line-height:1.1}
+.kpi span{font-size:12.5px;color:var(--muted)}
+.regctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.regctl .pill.open{background:#E2F6EA;color:#17603A}
+.regctl .pill.closed{background:#F1EBE1;color:var(--muted)}
+.sbtn{height:36px;padding:0 14px;border-radius:11px;background:#fff;border:1.5px solid var(--line);font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.sbtn.red{border-color:#E9C2BF;color:var(--red)}
+.sbtn.green{border-color:#BFD6CB;color:var(--green)}
+.sbtn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.filters button{height:32px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);font-size:13.5px;font-weight:600;color:var(--muted);background:#fff}
+.filters button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.list{margin-top:12px;display:grid;gap:8px}
+.it{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.it .no{font-family:var(--serif);font-weight:600;font-size:24px;text-align:center}
+.it .nm{font-weight:600;line-height:1.2}
+.it .meta{font-size:13px;color:var(--muted)}
+.it .meta a{color:var(--green);font-weight:600;text-decoration:none}
+.st{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.st.waiting{background:var(--green-l);color:var(--green)}
+.st.in{background:var(--red);color:#fff}
+.st.done{background:#EEE8DF;color:#8A8178}
+.st.skipped{background:var(--amber-l);color:var(--amber)}
+.st.cancelled{background:#F1E4E3;color:#9B6B68}
+.src{font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:4px}
+.it.in{border-color:var(--red);box-shadow:0 0 0 3px rgba(161,29,33,.1)}
+.it.done,.it.cancelled{opacity:.6}
+.it .acts{display:flex;gap:6px}
+.ib{width:38px;height:38px;border-radius:11px;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center}
+.ib:hover{background:#F8F3EA}
+.menu{position:fixed;z-index:60;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 20px 40px -12px rgba(0,0,0,.3);padding:6px;min-width:190px}
+.menu button{display:flex;width:100%;text-align:left;padding:10px 12px;border-radius:9px;font-weight:500;gap:10px}
+.menu button:hover{background:#F6F1E8}
+.menu button.danger{color:var(--red)}
+.form-grid{display:grid;gap:14px;margin-top:6px}
+@media(min-width:620px){.form-grid.two{grid-template-columns:1fr 1fr}}
+.hint{font-size:13px;color:var(--muted);margin-top:4px}
+.days{display:flex;flex-wrap:wrap;gap:6px}
+.days button{height:38px;min-width:48px;border-radius:11px;border:1.5px solid var(--line);background:#fff;font-weight:600}
+.days button.on{background:var(--red);border-color:var(--red);color:#fff}
+.sec{font-family:var(--serif);font-size:17px;font-weight:600;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.people{display:grid;gap:8px;margin-top:10px}
+.person{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.av{width:36px;height:36px;border-radius:50%;background:var(--green-l);color:var(--green);display:grid;place-items:center;font-weight:700;flex:none;text-transform:uppercase}
+.person .e{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.center{min-height:70vh;display:grid;place-items:center;text-align:center}
+.login{max-width:400px;width:100%}
+.login .logo{width:64px;height:64px;border-radius:18px;margin:0 auto 14px}
+.login h1{font-family:var(--serif);font-weight:600;font-size:28px}
+.login p{color:var(--muted);margin-top:6px}
+.gbtn{background:#fff;border:1.5px solid var(--line);box-shadow:var(--shadow)}
+.spin{width:28px;height:28px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--red);animation:sp 0.8s linear infinite;margin:0 auto}
+@keyframes sp{to{transform:rotate(360deg)}}
+.warn{background:var(--amber-l);border:1px solid #EBD3A4;color:#6B4A10;border-radius:14px;padding:12px 14px;font-size:14.5px;margin-bottom:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.card .pill.open{background:#E2F6EA;color:#17603A}
+.card .pill.closed{background:#F1EBE1;color:var(--muted)}
+.meta .nw{white-space:nowrap}
+@media(max-width:600px){
+  .it{grid-template-columns:40px 1fr auto;gap:8px;padding:10px}
+  .it .no{font-size:22px}
+  .it .st{display:inline-block;margin:3px 0 0}
+  .it .nm{display:flex;flex-direction:column;align-items:flex-start}
+  .ib{width:36px;height:36px}
+  .adm-top .who b{display:none}
+  .adm-top .who{font-size:12px}
+  .now .nn b{font-size:72px}
+  .kpi b{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="modal-root"></div>
+
+<script type="module">
+/* =====================================================================
+   AMBIKA HOMOEOPATHY · Token booking app · v1
+   ---------------------------------------------------------------------
+   Paste your Firebase web config below to go LIVE.
+   Leave it as null to run in DEMO mode (data stays on this device).
+   ===================================================================== */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyA7OBtrUWURsM5xTlxsF1s_gU7f9CgZay8",
+  authDomain: "ambika-homoeopathy.firebaseapp.com",
+  projectId: "ambika-homoeopathy",
+  storageBucket: "ambika-homoeopathy.firebasestorage.app",
+  messagingSenderId: "764920665037",
+  appId: "1:764920665037:web:459d501225d83f8efd2a84"
+};
+
+const DOCTOR_PHOTO = "doctor.jpg";
+
+const CLINIC = {
+  phone: "9031761326",
+  maps: "https://www.google.com/maps/search/?api=1&query=Ambika+Homoeopathy+Jainamore+Bokaro",
+  reg: "Reg. No. 497/19",
+  degree: "BHMS (VBU)",
+};
+
+const DEFAULTS = {
+  openMin: 540,     // 9:00 AM  booking opens
+  closeMin: 1230,   // 8:30 PM  booking closes
+  resetMin: 510,    // 8:30 AM  numbers reset to zero
+  sitFrom: 990,     // 4:30 PM  doctor sits
+  sitTo: 1260,      // 9:00 PM
+  avgMin: 5,        // minutes per patient (estimate)
+  maxTokens: 0,     // 0 = unlimited
+  paused: false,
+  offDays: [],      // ISO weekday numbers 1=Mon … 7=Sun
+  forceOpenDay: "", // day key on which booking is opened early by an owner
+  notice: "",
+};
+
+/* ---------------------------------------------------------------- i18n */
+const TXT = {
+  en: {
+    clinic: "Ambika Homoeopathy", tagline: "A Multi Speciality Homoeopathic Clinic",
+    liveBoard: "Live queue", nowServing: "Now with doctor", notStarted: "Not started yet",
+    booked: "Booked", waiting: "Waiting", done: "Done",
+    doctorSits: "Doctor sits", open: "Booking open", before: "Booking opens at {t}", after: "Booking closed for today",
+    paused: "Booking paused by clinic", off: "Clinic closed today", full: "All numbers for today are booked",
+    bookTitle: "Get your number", bookSub: "Numbers are given in order of booking. Book first, get an earlier number.",
+    name: "Patient's name", namePh: "e.g. Sunita Devi", place: "Coming from (village / area)", placePh: "e.g. Chas, Bermo, Jainamore",
+    phone: "Mobile number", phonePh: "10-digit number",
+    submit: "Book my number", booking: "Booking…",
+    errName: "Please enter the patient's name", errPlace: "Please enter where you are coming from", errPhone: "Enter a valid 10-digit mobile number",
+    closedErr: "Booking is not open right now.", netErr: "Could not connect. Check your internet and try again.",
+    yourNumber: "Your number", ahead: "{n} patients before you", aheadOne: "1 patient before you", next: "You're next. Please be at the clinic.",
+    turn: "It's your turn. Please go in.", est: "Expected around {t}", doneMsg: "Consultation complete. Get well soon!",
+    skippedMsg: "Your number was called but you were not present. Please meet the reception.",
+    cancelledMsg: "This booking was cancelled by the clinic.",
+    already: "You already have a number today", ticketOk: "Your number is booked", screenshot: "Take a screenshot of this ticket",
+    validToday: "Valid for today only", ok: "Done", another: "Book for another patient",
+    queueToday: "Today's numbers", noTokens: "No numbers booked yet today.",
+    lgIn: "With doctor", lgWait: "Waiting", lgDone: "Done", lgSkip: "Missed", lgMe: "You",
+    yourDoctor: "Your doctor", doctor: "Dr. N. K. Prajapati", call: "Call clinic", directions: "Directions",
+    timings: "Doctor's timing", address: "Address", addressV: "Jainamore, Bokaro, Jharkhand", bookTimes: "Online booking",
+    how: "How it works", how1: "Book your number from {t}, from anywhere", how2: "Watch the live number on this page", how3: "Reach the clinic a little before your turn",
+    reset: "Numbers start again from 1 every day at {t}.", staff: "Staff login", install: "Install app",
+    peopleAheadShort: "Before you", estShort: "Approx. time",
+  },
+  hi: {
+    clinic: "अम्बिका होम्योपैथी", tagline: "मल्टी स्पेशलिटी होम्योपैथिक क्लिनिक",
+    liveBoard: "लाइव कतार", nowServing: "अभी डॉक्टर के पास", notStarted: "अभी शुरू नहीं हुआ",
+    booked: "बुक हुए", waiting: "बाकी", done: "हो गए",
+    doctorSits: "डॉक्टर बैठते हैं", open: "बुकिंग चालू है", before: "बुकिंग {t} बजे खुलेगी", after: "आज की बुकिंग बंद हो गई",
+    paused: "क्लिनिक ने बुकिंग अभी रोकी है", off: "आज क्लिनिक बंद है", full: "आज के सभी नंबर बुक हो गए",
+    bookTitle: "अपना नंबर लगाएं", bookSub: "जो पहले बुक करेगा, उसे पहले का नंबर मिलेगा।",
+    name: "मरीज़ का नाम", namePh: "जैसे: सुनीता देवी", place: "कहाँ से आ रहे हैं (गाँव / मोहल्ला)", placePh: "जैसे: चास, बेरमो, जैनामोड़",
+    phone: "मोबाइल नंबर", phonePh: "10 अंकों का नंबर",
+    submit: "मेरा नंबर लगाएं", booking: "नंबर लग रहा है…",
+    errName: "कृपया मरीज़ का नाम लिखें", errPlace: "कृपया लिखें कि कहाँ से आ रहे हैं", errPhone: "सही 10 अंकों का मोबाइल नंबर डालें",
+    closedErr: "अभी बुकिंग चालू नहीं है।", netErr: "कनेक्शन नहीं हो पाया। इंटरनेट देखकर फिर कोशिश करें।",
+    yourNumber: "आपका नंबर", ahead: "आपसे पहले {n} मरीज़", aheadOne: "आपसे पहले 1 मरीज़", next: "अगला नंबर आपका है, क्लिनिक में रहें।",
+    turn: "आपकी बारी है, अंदर जाइए।", est: "लगभग {t} बजे", doneMsg: "आपका दिखाना हो गया। जल्दी स्वस्थ हों!",
+    skippedMsg: "आपका नंबर पुकारा गया पर आप मौजूद नहीं थे। कृपया काउंटर पर मिलें।",
+    cancelledMsg: "यह बुकिंग क्लिनिक ने रद्द कर दी है।",
+    already: "आपका आज का नंबर पहले से लगा है", ticketOk: "आपका नंबर लग गया", screenshot: "इस टिकट का स्क्रीनशॉट ले लें",
+    validToday: "केवल आज के लिए मान्य", ok: "ठीक है", another: "दूसरे मरीज़ का नंबर लगाएं",
+    queueToday: "आज के नंबर", noTokens: "आज अभी कोई नंबर नहीं लगा है।",
+    lgIn: "डॉक्टर के पास", lgWait: "बाकी", lgDone: "हो गए", lgSkip: "छूट गए", lgMe: "आपका",
+    yourDoctor: "आपके डॉक्टर", doctor: "डॉ. एन. के. प्रजापति", call: "कॉल करें", directions: "रास्ता देखें",
+    timings: "डॉक्टर का समय", address: "पता", addressV: "जैनामोड़, बोकारो, झारखंड", bookTimes: "ऑनलाइन बुकिंग",
+    how: "कैसे काम करता है", how1: "{t} बजे से कहीं से भी अपना नंबर लगाएं", how2: "इसी पेज पर लाइव नंबर देखते रहें", how3: "अपनी बारी से थोड़ा पहले क्लिनिक पहुँचें",
+    reset: "हर दिन {t} बजे नंबर फिर से 1 से शुरू होते हैं।", staff: "स्टाफ लॉगिन", install: "ऐप इंस्टॉल करें",
+    peopleAheadShort: "आपसे पहले", estShort: "अनुमानित समय",
+  },
+};
+
+/* ---------------------------------------------------------------- utils */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+const IST = 330;
+const istDate = (offsetMin = 0) => new Date(Date.now() + (IST + offsetMin) * 60000); // read with UTC getters
+const nowMin = () => { const d = istDate(); return d.getUTCHours() * 60 + d.getUTCMinutes(); };
+const isoDow = () => { const d = istDate().getUTCDay(); return d === 0 ? 7 : d; };
+function dayKeyFor(s) {
+  const d = istDate(-s.resetMin);
+  return String(d.getUTCFullYear() * 10000 + (d.getUTCMonth() + 1) * 100 + d.getUTCDate());
+}
+function fmt(min) {
+  min = ((min % 1440) + 1440) % 1440;
+  let h = Math.floor(min / 60), m = min % 60; const ap = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12; return `${h}:${String(m).padStart(2, "0")} ${ap}`;
+}
+const toHHMM = (min) => `${String(Math.floor(min / 60)).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
+const fromHHMM = (v) => { const [h, m] = String(v || "0:0").split(":").map(Number); return h * 60 + (m || 0); };
+function keyLabel(key, lang) {
+  const y = +key.slice(0, 4), m = +key.slice(4, 6), d = +key.slice(6, 8);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+}
+const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const cleanPhone = (v) => String(v || "").replace(/\D/g, "").replace(/^(91|0)(?=\d{10}$)/, "");
+async function guardId(phone, name) {
+  const raw = `${phone}|${name.trim().toLowerCase().replace(/\s+/g, " ")}`;
+  try {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(raw));
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 32);
+  } catch { let h = 0; for (const c of raw) h = (h * 31 + c.charCodeAt(0)) | 0; return "g" + (h >>> 0).toString(16) + raw.length; }
+}
+const firstName = (n) => String(n || "").trim().split(/\s+/)[0] || "";
+
+const ICON = {
+  logo: `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M9 31C9 18 18 9 32 8c0 14-9 23-23 23z" fill="#FCEFE6"/><path d="M10 30C16 23 21 18 28 12" stroke="#A11D21" stroke-width="2.2" stroke-linecap="round"/><path d="M17 24l-1-6M22 19l-1-5M17 24l6-.5M22 19l5-.6" stroke="#A11D21" stroke-width="1.6" stroke-linecap="round"/></svg>`,
+  phone: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>`,
+  pin: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  clock: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+  ticket: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M13 6v12" stroke-dasharray="2 2"/></svg>`,
+  info: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>`,
+  dots: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>`,
+  check: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`,
+  call: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`,
+  google: `<svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>`,
+};
+
+/* ================================================================ BACKENDS
+   Both backends expose the same interface:
+   onSettings(cb) onDay(key,cb) onTokens(key,cb) onContacts(key,cb) onRoles(cb) onAuth(cb)
+   register(key,{name,place,phone},by) adminWrite(key,changes,current)
+   saveSettings(s) saveRoles(r) claim() signIn(opt) signOut() cleanup(key)
+   ================================================================ */
+
+function makeDemoBackend() {
+  const LS = "ambika_demo_v1";
+  let st = store.get(LS, null);
+  const subs = new Set();
+  const emit = () => subs.forEach((f) => f());
+  const save = () => { store.set(LS, st); emit(); };
+  addEventListener("storage", (e) => { if (e.key === LS) { st = store.get(LS, st); emit(); } });
+  if (!st) {
+    const key = dayKeyFor(DEFAULTS);
+    const people = [["Sunita Devi","Jainamore"],["Ramesh Mahto","Chas"],["Anita Kumari","Bokaro Sec 4"],["Mohan Lal","Bermo"],["Pooja Singh","Tupkadih"],["Rakesh Kumar","Jaridih"],["Sushila Devi","Kasmar"],["Vikash Kumar","Petarwar"],["Kavita Mahato","Gomia"],["Ajay Kumar","Bandhdih"],["Rina Devi","Jaina"],["Santosh Ravani","Phusro"],["Meena Kumari","Chandankiyari"],["Dilip Turi","Pindrajora"]];
+    const tokens = {}, contacts = {};
+    const t0 = Date.UTC(+key.slice(0,4), +key.slice(4,6) - 1, +key.slice(6,8), 3, 30); // 9:00 AM IST
+    people.forEach(([name, place], i) => {
+      const no = i + 1;
+      const status = no <= 5 ? "done" : no === 6 ? "skipped" : no === 7 ? "in" : "waiting";
+      tokens[no] = { no, status, by: no % 4 === 0 ? "walkin" : "online", createdAt: Math.min(Date.now(), t0 + i * 420e3), at: no <= 7 ? Date.now() - (8 - no) * 360e3 : 0 };
+      contacts[no] = { name, place, phone: "98765" + String(10000 + no).slice(1) };
+    });
+    st = {
+      settings: { ...DEFAULTS, forceOpenDay: key },
+      roles: { owners: ["deepansh@demo.app", "doctor@demo.app"], admins: ["reception@demo.app"] },
+      auth: null,
+      days: { [key]: { next: people.length, current: 7, tokens, contacts, guard: {} } },
+    };
+    store.set(LS, st);
+  }
+  const on = (sel, cb) => { const f = () => cb(sel()); subs.add(f); setTimeout(f, 0); return () => subs.delete(f); };
+  const day = (k) => (st.days[k] ||= { next: 0, current: 0, tokens: {}, contacts: {}, guard: {} });
+  const roleOf = (email) => !email ? null : st.roles.owners.includes(email) ? "owner" : st.roles.admins.includes(email) ? "admin" : "none";
+  const wait = (ms = 250) => new Promise((r) => setTimeout(r, ms));
+  return {
+    mode: "demo",
+    onSettings: (cb) => on(() => ({ ...DEFAULTS, ...st.settings, _unset: !st.settings }), cb),
+    onDay: (k, cb) => on(() => ({ next: st.days[k]?.next || 0, current: st.days[k]?.current || 0 }), cb),
+    onTokens: (k, cb) => on(() => Object.values(st.days[k]?.tokens || {}).map((t) => ({ ...t })).sort((a, b) => a.no - b.no), cb),
+    onContacts: (k, cb) => on(() => ({ ...(st.days[k]?.contacts || {}) }), cb),
+    onRoles: (cb) => on(() => JSON.parse(JSON.stringify(st.roles)), cb),
+    onAuth: (cb) => on(() => st.auth ? { ...st.auth, role: roleOf(st.auth.email) } : null, cb),
+    async signIn(email) { await wait(); st.auth = { email, name: email.split("@")[0] }; save(); },
+    async signOut() { st.auth = null; save(); },
+    async claim() {},
+    async register(k, { name, place, phone }, by) {
+      await wait(450);
+      const s = { ...DEFAULTS, ...st.settings };
+      if (by === "online") {
+        const rs = regState(s, k, st.days[k]?.next || 0);
+        if (rs !== "open") throw Object.assign(new Error("closed"), { code: "permission-denied" });
+      }
+      const d = day(k);
+      const g = phone ? await guardId(phone, name) : null;
+      if (g && d.guard[g]) return { no: d.guard[g], existing: true };
+      const no = d.next + 1; d.next = no;
+      d.tokens[no] = { no, status: "waiting", by, createdAt: Date.now(), at: 0 };
+      d.contacts[no] = { name, place, phone: phone || "" };
+      if (g) d.guard[g] = no;
+      save(); return { no, existing: false };
+    },
+    async adminWrite(k, changes, current) {
+      const d = day(k);
+      for (const [no, ch] of Object.entries(changes)) if (d.tokens[no]) Object.assign(d.tokens[no], ch, { at: Date.now() });
+      if (current !== undefined) d.current = current;
+      save();
+    },
+    async saveSettings(s) { st.settings = { ...s }; delete st.settings._unset; save(); },
+    async saveRoles(r) { st.roles = r; save(); },
+    async cleanup(k) { for (const key of Object.keys(st.days)) if (key !== k) delete st.days[key]; save(); },
+    async resetDemo() { localStorage.removeItem(LS); location.reload(); },
+  };
+}
+
+async function makeFirebaseBackend(cfg) {
+  const V = "10.12.2", B = `https://www.gstatic.com/firebasejs/${V}/`;
+  const [A, F, AU] = await Promise.all([import(B + "firebase-app.js"), import(B + "firebase-firestore.js"), import(B + "firebase-auth.js")]);
+  const app = A.initializeApp(cfg);
+  const db = F.getFirestore(app);
+  const auth = AU.getAuth(app);
+  const { doc, collection, onSnapshot, runTransaction, getDoc, getDocs, setDoc, writeBatch, serverTimestamp } = F;
+  const ms = (v) => (v && v.toMillis ? v.toMillis() : v || 0);
+  const errLog = (e) => { console.error(e); toast("Sync error: " + (e.code || e.message)); };
+  let authCb = null, lastUser = null;
+  async function resolveRole(u) {
+    if (!u) return null;
+    const email = (u.email || "").toLowerCase();
+    let role = "none";
+    try {
+      const r = await getDoc(doc(db, "config", "roles"));
+      if (!r.exists()) role = "unclaimed";
+      else { const d = r.data(); role = (d.owners || []).includes(email) ? "owner" : (d.admins || []).includes(email) ? "admin" : "none"; }
+    } catch (e) { role = "none"; }
+    return { email, name: u.displayName || email, role };
+  }
+  return {
+    mode: "live",
+    onSettings: (cb) => onSnapshot(doc(db, "config", "settings"), (s) => cb(s.exists() ? { ...DEFAULTS, ...s.data(), _unset: false } : { ...DEFAULTS, _unset: true }), errLog),
+    onDay: (k, cb) => onSnapshot(doc(db, "days", k), (s) => cb(s.exists() ? { next: s.data().next || 0, current: s.data().current || 0 } : { next: 0, current: 0 }), errLog),
+    onTokens: (k, cb) => onSnapshot(collection(db, "days", k, "tokens"), (qs) => cb(qs.docs.map((d) => { const x = d.data(); return { ...x, createdAt: ms(x.createdAt), at: ms(x.at) }; }).sort((a, b) => a.no - b.no)), errLog),
+    onContacts: (k, cb) => onSnapshot(collection(db, "days", k, "contacts"), (qs) => { const o = {}; qs.docs.forEach((d) => (o[d.id] = d.data())); cb(o); }, errLog),
+    onRoles: (cb) => onSnapshot(doc(db, "config", "roles"), (s) => cb(s.exists() ? s.data() : { owners: [], admins: [] }), errLog),
+    onAuth(cb) { authCb = cb; return AU.onAuthStateChanged(auth, async (u) => { lastUser = u; cb(await resolveRole(u)); }); },
+    async signIn() {
+      const p = new AU.GoogleAuthProvider(); p.setCustomParameters({ prompt: "select_account" });
+      try { await AU.signInWithPopup(auth, p); }
+      catch (e) { if (/popup/.test(e.code || "")) await AU.signInWithRedirect(auth, p); else throw e; }
+    },
+    async signOut() { await AU.signOut(auth); },
+    async claim() {
+      const email = (auth.currentUser?.email || "").toLowerCase();
+      await setDoc(doc(db, "config", "roles"), { owners: [email], admins: [] });
+      const s = { ...DEFAULTS }; await setDoc(doc(db, "config", "settings"), s);
+      authCb && authCb(await resolveRole(lastUser));
+    },
+    async register(k, { name, place, phone }, by) {
+      const g = phone ? await guardId(phone, name) : null;
+      return runTransaction(db, async (tx) => {
+        const dref = doc(db, "days", k);
+        const gref = g ? doc(db, "days", k, "guard", g) : null;
+        const ds = await tx.get(dref);
+        if (gref) { const gs = await tx.get(gref); if (gs.exists()) return { no: gs.data().no, existing: true }; }
+        const no = (ds.exists() ? ds.data().next || 0 : 0) + 1;
+        if (ds.exists()) tx.update(dref, { next: no, updatedAt: serverTimestamp() });
+        else tx.set(dref, { next: no, current: 0, updatedAt: serverTimestamp() });
+        tx.set(doc(db, "days", k, "tokens", String(no)), { no, status: "waiting", by, createdAt: serverTimestamp() });
+        tx.set(doc(db, "days", k, "contacts", String(no)), { name, place, phone: phone || "" });
+        if (gref) tx.set(gref, { no });
+        return { no, existing: false };
+      });
+    },
+    async adminWrite(k, changes, current) {
+      const b = writeBatch(db);
+      for (const [no, ch] of Object.entries(changes)) b.update(doc(db, "days", k, "tokens", String(no)), { ...ch, at: serverTimestamp() });
+      if (current !== undefined) b.set(doc(db, "days", k), { current, updatedAt: serverTimestamp() }, { merge: true });
+      await b.commit();
+    },
+    async saveSettings(s) { const c = { ...s }; delete c._unset; await setDoc(doc(db, "config", "settings"), c); },
+    async saveRoles(r) { await setDoc(doc(db, "config", "roles"), r); },
+    async cleanup(k) {
+      // Daily wipe: delete every older day (tokens, contacts, guards, day doc).
+      const days = await getDocs(collection(db, "days"));
+      for (const d of days.docs) {
+        if (d.id >= k) continue;
+        const refs = [];
+        for (const sub of ["tokens", "contacts", "guard"]) (await getDocs(collection(db, "days", d.id, sub))).docs.forEach((x) => refs.push(x.ref));
+        refs.push(d.ref);
+        for (let i = 0; i < refs.length; i += 400) { const b = writeBatch(db); refs.slice(i, i + 400).forEach((r) => b.delete(r)); await b.commit(); }
+      }
+    },
+  };
+}
+
+/* ================================================================ STATE */
+const S = {
+  lang: store.get("ambika_lang", "hi"),
+  settings: { ...DEFAULTS, _unset: true },
+  key: dayKeyFor(DEFAULTS),
+  day: { next: 0, current: 0 },
+  tokens: [],
+  contacts: {},
+  roles: { owners: [], admins: [] },
+  auth: undefined, // undefined = checking, null = signed out
+  mine: store.get("ambika_mine", []),
+  adminTab: "queue",
+  filter: "active",
+  settingsDirty: false,
+  loaded: false,
+  error: "",
+};
+let backend = null;
+let unsubDay = [], unsubAdmin = [];
+const t = (k, vars = {}) => (TXT[S.lang][k] ?? TXT.en[k] ?? k).replace(/\{(\w+)\}/g, (_, v) => vars[v]);
+
+function regState(s, key, next) {
+  if (s._unset) return "paused";
+  if (s.paused) return "paused";
+  if (s.maxTokens > 0 && next >= s.maxTokens) return "full";
+  if (s.forceOpenDay === key) return "open";
+  if ((s.offDays || []).includes(isoDow())) return "off";
+  const m = nowMin();
+  if (m < s.openMin) return "before";
+  if (m >= s.closeMin) return "after";
+  return "open";
+}
+const regLabel = () => { const rs = regState(S.settings, S.key, S.day.next); return { rs, text: t(rs, { t: fmt(S.settings.openMin) }) }; };
+const isAdmin = () => S.auth && (S.auth.role === "owner" || S.auth.role === "admin");
+const isOwner = () => S.auth && S.auth.role === "owner";
+
+/* ================================================================ SUBSCRIPTIONS */
+function subscribeDay() {
+  unsubDay.forEach((u) => u && u()); unsubDay = [];
+  const k = S.key;
+  unsubDay.push(backend.onDay(k, (d) => { const prev = S.day.current; S.day = d; S.loaded = true; update(prev !== d.current); }));
+  unsubDay.push(backend.onTokens(k, (list) => { S.tokens = list; update(); }));
+  subscribeAdmin();
+}
+function subscribeAdmin() {
+  unsubAdmin.forEach((u) => u && u()); unsubAdmin = [];
+  if (!isAdmin()) { S.contacts = {}; return; }
+  unsubAdmin.push(backend.onContacts(S.key, (c) => { S.contacts = c; update(); }));
+  if (isOwner()) unsubAdmin.push(backend.onRoles((r) => { S.roles = r; update(); }));
+}
+function checkDayRollover() {
+  const k = dayKeyFor(S.settings);
+  if (k !== S.key) { S.key = k; S.day = { next: 0, current: 0 }; S.tokens = []; S.contacts = {}; subscribeDay(); if (isAdmin()) backend.cleanup(k).catch(() => {}); }
+}
+
+/* ================================================================ ROUTER / RENDER */
+const root = $("#root");
+const isAdminView = () => location.hash === "#admin";
+let lastView = null;
+function render() {
+  document.documentElement.lang = S.lang;
+  document.body.classList.toggle("hi", S.lang === "hi");
+  const view = isAdminView() ? "admin" : "home";
+  lastView = view;
+  if (view === "home") renderHome(); else renderAdmin(true);
+}
+function update(bump = false) {
+  if (lastView === "home") updateHome(bump); else if (lastView === "admin") renderAdmin(true);
+}
+addEventListener("hashchange", () => { closeMenu(); render(); scrollTo(0, 0); });
+
+const demoStrip = () => backend?.mode === "demo" ? `<div class="demo"><b>Demo mode</b> · data stays on this device only. Add Firebase config to go live.</div>` : "";
+
+/* ---------------------------------------------------------------- PATIENT HOME */
+function renderHome() {
+  const keep = { name: $("#f-name")?.value, place: $("#f-place")?.value, phone: $("#f-phone")?.value };
+  const s = S.settings;
+  root.innerHTML = `${demoStrip()}
+  <div class="wrap">
+    <header class="top">
+      <div class="logo">${ICON.logo}</div>
+      <div class="brand"><div class="en">Ambika Homoeopathy</div><div class="hn">अम्बिका होम्योपैथी</div></div>
+      <div class="lang" role="group" aria-label="Language"><button data-lang="hi" class="${S.lang === "hi" ? "on" : ""}">हिं</button><button data-lang="en" class="${S.lang === "en" ? "on" : ""}">EN</button></div>
+    </header>
+    <div id="notice"></div>
+    <section class="board" id="board" aria-live="polite"></section>
+    <div id="mine" class="mine"></div>
+
+    <section class="card" id="book">
+      <h2>${t("bookTitle")}</h2>
+      <p class="sub">${t("bookSub")}</p>
+      <div id="bookstate"></div>
+      <form id="bookform" novalidate>
+        <fieldset id="bookfs">
+          <div class="field"><label for="f-name">${t("name")}</label><input class="inp" id="f-name" autocomplete="name" maxlength="60" placeholder="${t("namePh")}"><div class="err" id="e-name">${t("errName")}</div></div>
+          <div class="field"><label for="f-place">${t("place")}</label><input class="inp" id="f-place" maxlength="60" placeholder="${t("placePh")}"><div class="err" id="e-place">${t("errPlace")}</div></div>
+          <div class="field"><label for="f-phone">${t("phone")}</label><div class="phone"><span class="cc">+91</span><input class="inp" id="f-phone" inputmode="numeric" autocomplete="tel-national" maxlength="14" placeholder="${t("phonePh")}"></div><div class="err" id="e-phone">${t("errPhone")}</div></div>
+          <button class="btn primary block" style="margin-top:18px" id="bookbtn" type="submit">${ICON.ticket}<span>${t("submit")}</span></button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section class="card" id="queue"></section>
+
+    <section class="card doc">
+      <div class="photo" style="background-image:url('${DOCTOR_PHOTO}')" role="img" aria-label="Dr. N. K. Prajapati">
+        <div class="cap"><div class="k">${t("yourDoctor")}</div><h3>${t("doctor")}</h3><p>${CLINIC.degree} · ${CLINIC.reg}</p></div>
+      </div>
+      <div class="info">
+        <div class="row"><div class="ic">${ICON.clock}</div><div><div class="t">${t("timings")}</div><div class="v">${fmt(s.sitFrom)} – ${fmt(s.sitTo)}</div></div></div>
+        <div class="row"><div class="ic">${ICON.ticket}</div><div><div class="t">${t("bookTimes")}</div><div class="v">${fmt(s.openMin)} – ${fmt(s.closeMin)}</div></div></div>
+        <div class="row"><div class="ic">${ICON.pin}</div><div><div class="t">${t("address")}</div><div class="v">${t("addressV")}</div></div></div>
+        <div class="row"><div class="ic">${ICON.phone}</div><div><div class="t">${t("call")}</div><div class="v">+91 90317 61326</div></div></div>
+        <div class="actions">
+          <a class="btn green" href="tel:+91${CLINIC.phone}">${ICON.phone}<span>${t("call")}</span></a>
+          <a class="btn ghost" href="${CLINIC.maps}" target="_blank" rel="noopener">${ICON.pin}<span>${t("directions")}</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>${t("how")}</h2>
+      <div class="steps">
+        <div class="step"><b></b><span>${t("how1", { t: fmt(s.openMin) })}</span></div>
+        <div class="step"><b></b><span>${t("how2")}</span></div>
+        <div class="step"><b></b><span>${t("how3")}</span></div>
+      </div>
+      <button class="btn ghost block install" id="installBtn">${t("install")}</button>
+    </section>
+
+    <footer>
+      <div>${t("reset", { t: fmt(s.resetMin) })}</div>
+      <div>© Ambika Homoeopathy · Jainamore · <a href="#admin">${t("staff")}</a></div>
+    </footer>
+  </div>`;
+  if (keep.name) $("#f-name").value = keep.name;
+  if (keep.place) $("#f-place").value = keep.place;
+  if (keep.phone) $("#f-phone").value = keep.phone;
+  root.querySelectorAll("[data-lang]").forEach((b) => b.onclick = () => { S.lang = b.dataset.lang; store.set("ambika_lang", S.lang); render(); });
+  $("#bookform").onsubmit = onBook;
+  ["name", "place", "phone"].forEach((f) => $("#f-" + f).addEventListener("input", () => { $("#f-" + f).classList.remove("bad"); $("#e-" + f).classList.remove("show"); }));
+  setupInstall();
+  updateHome(false);
+}
+
+function counts() {
+  const c = { waiting: 0, done: 0, skipped: 0, in: 0, cancelled: 0 };
+  S.tokens.forEach((x) => c[x.status] = (c[x.status] || 0) + 1);
+  return c;
+}
+function aheadOf(no) {
+  return S.tokens.filter((x) => x.no < no && (x.status === "waiting" || x.status === "in")).length;
+}
+function estFor(ahead) {
+  const s = S.settings; const base = Math.max(nowMin(), s.sitFrom);
+  return fmt(Math.round(base + ahead * s.avgMin));
+}
+
+function updateHome(bump) {
+  if (!$("#board")) return;
+  const s = S.settings, c = counts(), cur = S.day.current;
+  const { rs, text } = regLabel();
+  $("#notice").innerHTML = s.notice ? `<div class="notice">${ICON.info}<span>${esc(s.notice)}</span></div>` : "";
+  $("#board").innerHTML = `
+    <div class="b-head"><span class="live"><i></i>LIVE</span><span>${t("liveBoard")}</span><span class="date">${keyLabel(S.key, S.lang)}</span></div>
+    <div class="b-main">
+      <div>
+        <div class="lbl">${t("nowServing")}</div>
+        <div class="bignum ${bump ? "bump" : ""}">${cur ? `<small>#</small>${cur}` : "—"}</div>
+        ${cur ? "" : `<div class="b-sub">${t("notStarted")}</div>`}
+      </div>
+      <div class="stats">
+        <div><b>${S.day.next}</b><span>${t("booked")}</span></div>
+        <div><b>${c.waiting}</b><span>${t("waiting")}</span></div>
+        <div><b>${c.done}</b><span>${t("done")}</span></div>
+      </div>
+    </div>
+    <div class="b-foot"><span class="pill ${rs === "open" ? "open" : "closed"}">${text}</span><span class="sits">${t("doctorSits")} ${fmt(s.sitFrom)}–${fmt(s.sitTo)}</span></div>`;
+
+  // my tokens
+  const mine = S.mine.filter((m) => m.key === S.key);
+  $("#mine").innerHTML = mine.map((m) => {
+    const tk = S.tokens.find((x) => x.no === m.no);
+    const status = tk?.status || "waiting";
+    let msg = "", big = "", bar = "";
+    if (status === "in") { big = t("turn"); }
+    else if (status === "done") { big = t("doneMsg"); }
+    else if (status === "skipped") { big = t("skippedMsg"); }
+    else if (status === "cancelled") { big = t("cancelledMsg"); }
+    else {
+      const a = aheadOf(m.no);
+      big = a === 0 ? t("next") : a === 1 ? t("aheadOne") : t("ahead", { n: a });
+      msg = S.day.current || nowMin() < S.settings.sitFrom ? t("est", { t: estFor(a) }) : "";
+      const total = Math.max(1, m.no - 0), pct = Math.min(100, Math.max(4, ((total - a) / total) * 100));
+      bar = `<div class="bar"><i style="width:${pct}%"></i></div>`;
+    }
+    return `<div class="mtk ${status}"><div class="stub"><span>${t("yourNumber")}</span><b>${m.no}</b></div>
+      <div class="body"><div class="who">${esc(m.name)}</div><div class="big">${big}</div>${msg ? `<div class="msg">${msg}</div>` : ""}${bar}</div></div>`;
+  }).join("");
+
+  // booking state
+  const open = rs === "open";
+  $("#bookfs").disabled = !open;
+  $("#bookstate").innerHTML = open ? "" : `<div class="closedbox">${ICON.clock}<span>${text}${rs === "before" || rs === "after" ? ` · ${t("bookTimes")}: ${fmt(s.openMin)} – ${fmt(s.closeMin)}` : ""}</span></div>`;
+
+  // queue chips
+  const mineNos = new Set(mine.map((m) => m.no));
+  $("#queue").innerHTML = `<h2>${t("queueToday")}</h2>
+    ${S.tokens.length ? `<div class="chips">${S.tokens.map((x) => `<span class="chip ${x.status} ${mineNos.has(x.no) ? "me" : ""}" title="#${x.no}">${x.no}</span>`).join("")}</div>
+    <div class="legend"><span><i class="in"></i>${t("lgIn")}</span><span><i></i>${t("lgWait")}</span><span><i class="done"></i>${t("lgDone")}</span><span><i class="skipped"></i>${t("lgSkip")}</span>${mine.length ? `<span><i class="me"></i>${t("lgMe")}</span>` : ""}</div>`
+      : `<p class="empty">${t("noTokens")}</p>`}`;
+}
+
+async function onBook(e) {
+  e.preventDefault();
+  const name = $("#f-name").value.trim().replace(/\s+/g, " ");
+  const place = $("#f-place").value.trim().replace(/\s+/g, " ");
+  const phone = cleanPhone($("#f-phone").value);
+  let ok = true;
+  const bad = (f, cond) => { $("#f-" + f).classList.toggle("bad", cond); $("#e-" + f).classList.toggle("show", cond); if (cond && ok) $("#f-" + f).focus(); if (cond) ok = false; };
+  bad("name", name.length < 2); bad("place", place.length < 2); bad("phone", !/^[6-9]\d{9}$/.test(phone));
+  if (!ok) return;
+  const btn = $("#bookbtn"); btn.disabled = true; btn.querySelector("span").textContent = t("booking");
+  try {
+    const r = await backend.register(S.key, { name: name.slice(0, 60), place: place.slice(0, 60), phone }, "online");
+    if (!S.mine.some((m) => m.key === S.key && m.no === r.no)) {
+      S.mine = [...S.mine.filter((m) => m.key === S.key), { key: S.key, no: r.no, name }];
+      store.set("ambika_mine", S.mine);
+    }
+    $("#f-name").value = ""; $("#f-place").value = "";
+    showTicket(r.no, name, place, r.existing);
+    updateHome();
+  } catch (err) {
+    console.error(err);
+    toast(String(err.code || "").includes("permission") ? t("closedErr") : t("netErr"));
+  } finally { btn.disabled = false; btn.querySelector("span").textContent = t("submit"); }
+}
+
+function showTicket(no, name, place, existing) {
+  const a = aheadOf(no);
+  openModal(`<div class="sheet" role="dialog" aria-modal="true">
+    <h3 style="text-align:center;margin-bottom:14px">${existing ? t("already") : t("ticketOk")}</h3>
+    <div class="ticket">
+      <div class="tt"><div class="logo" style="width:32px;height:32px;border-radius:9px;box-shadow:none;background:rgba(255,255,255,.12)">${ICON.logo.replace('width="28" height="28"', 'width="20" height="20"')}</div><span class="n">AMBIKA HOMOEOPATHY</span><span class="d">${keyLabel(S.key, S.lang)}</span></div>
+      <div class="tn"><div class="l">${t("yourNumber")}</div><b>${no}</b></div>
+      <div class="tw">${esc(name)}${place ? `<span>${esc(place)}</span>` : ""}</div>
+      <div class="perf"><i></i><i></i></div>
+      <div class="tf">
+        <div><b>${a}</b><span>${t("peopleAheadShort")}</span></div>
+        <div><b>${estFor(a)}</b><span>${t("estShort")}</span></div>
+      </div>
+    </div>
+    <p class="tnote">${t("screenshot")} · ${t("validToday")}<br>${t("doctorSits")} ${fmt(S.settings.sitFrom)} – ${fmt(S.settings.sitTo)}</p>
+    <div class="btns"><button class="btn primary block" data-close>${t("ok")}</button><button class="btn ghost block" data-another>${t("another")}</button></div>
+  </div>`);
+  $("#modal-root [data-another]").onclick = () => { closeModal(); $("#f-name")?.focus(); $("#book")?.scrollIntoView({ behavior: "smooth" }); };
+}
+
+/* ---------------------------------------------------------------- modal / toast / menu */
+function openModal(html, { onClose } = {}) {
+  const mr = $("#modal-root");
+  mr.innerHTML = `<div class="scrim">${html}</div>`;
+  const sc = mr.firstElementChild;
+  sc.addEventListener("click", (e) => { if (e.target === sc || e.target.closest("[data-close]")) { closeModal(); onClose && onClose(); } });
+  return sc;
+}
+function closeModal() { $("#modal-root").innerHTML = ""; }
+function confirmBox(title, body, okText = "Confirm", danger = true) {
+  return new Promise((res) => {
+    const sc = openModal(`<div class="sheet"><h3>${esc(title)}</h3><p>${esc(body)}</p><div class="btns"><button class="btn ${danger ? "primary" : "green"} block" data-ok>${esc(okText)}</button><button class="btn ghost block" data-close>Cancel</button></div></div>`, { onClose: () => res(false) });
+    sc.querySelector("[data-ok]").onclick = () => { closeModal(); res(true); };
+  });
+}
+let toastTimer;
+function toast(msg) {
+  document.querySelectorAll(".toast").forEach((x) => x.remove());
+  const el = document.createElement("div"); el.className = "toast"; el.textContent = msg; document.body.appendChild(el);
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.remove(), 3200);
+}
+let menuEl = null;
+function closeMenu() { menuEl?.remove(); menuEl = null; }
+addEventListener("click", (e) => { if (menuEl && !menuEl.contains(e.target) && !e.target.closest("[data-menu]")) closeMenu(); });
+addEventListener("scroll", closeMenu, { passive: true });
+
+/* install prompt */
+let deferredPrompt = null;
+addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredPrompt = e; setupInstall(); });
+function setupInstall() {
+  const b = $("#installBtn"); if (!b) return;
+  b.style.display = deferredPrompt ? "flex" : "none";
+  b.onclick = async () => { if (!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; b.style.display = "none"; };
+}
+
+/* ================================================================ ADMIN */
+function adminShell(inner, wide = true) {
+  return `${demoStrip()}<div class="wrap ${wide ? "wide" : ""}">${inner}</div>`;
+}
+function renderAdmin(soft = false) {
+  if (soft && S.adminTab === "settings" && S.settingsDirty && $("#setform")) return; // don't wipe edits
+  const keepScroll = scrollY;
+  if (S.auth === undefined) { root.innerHTML = adminShell(`<div class="center"><div class="spin"></div></div>`); return; }
+  if (!S.auth) return renderLogin();
+  if (S.auth.role === "unclaimed") return renderClaim();
+  if (S.auth.role === "none" || !S.auth.role) return renderNoAccess();
+  renderConsole();
+  if (soft) scrollTo(0, keepScroll);
+}
+
+function renderLogin() {
+  const demo = backend.mode === "demo";
+  root.innerHTML = adminShell(`<div class="center"><div class="login card" style="padding:28px 22px">
+    <div class="logo">${ICON.logo}</div>
+    <h1>Staff console</h1>
+    <p>Owners and admins of Ambika Homoeopathy sign in here to run the queue.</p>
+    <div class="btns" style="display:grid;gap:10px;margin-top:20px">
+      ${demo ? `
+        <button class="btn primary block" data-demo="deepansh@demo.app">Enter as Owner (Deepansh)</button>
+        <button class="btn ghost block" data-demo="doctor@demo.app">Enter as Owner (Doctor)</button>
+        <button class="btn ghost block" data-demo="reception@demo.app">Enter as Admin (Reception)</button>
+        <p class="hint">Demo mode. In the live app this is "Sign in with Google".</p>`
+      : `<button class="btn gbtn block" id="gsign">${ICON.google}<span>Sign in with Google</span></button>`}
+      <a class="btn ghost block" href="#" style="text-decoration:none">← Patient page</a>
+    </div></div></div>`, false);
+  root.querySelectorAll("[data-demo]").forEach((b) => b.onclick = () => backend.signIn(b.dataset.demo));
+  const g = $("#gsign"); if (g) g.onclick = async () => { try { g.disabled = true; await backend.signIn(); } catch (e) { toast("Sign-in failed: " + (e.code || e.message)); } finally { g.disabled = false; } };
+}
+function renderClaim() {
+  root.innerHTML = adminShell(`<div class="center"><div class="login card" style="padding:28px 22px">
+    <div class="logo">${ICON.logo}</div><h1>Set up the clinic</h1>
+    <p>No owner exists yet. Signed in as <b>${esc(S.auth.email)}</b>. Claim ownership to become the first owner. You can add the second owner and admins right after.</p>
+    <div style="display:grid;gap:10px;margin-top:20px"><button class="btn primary block" id="claim">Claim ownership</button><button class="btn ghost block" id="so">Use another account</button></div>
+  </div></div>`, false);
+  $("#claim").onclick = async () => { try { await backend.claim(); toast("You are now the owner"); } catch (e) { toast("Failed: " + (e.code || e.message)); } };
+  $("#so").onclick = () => backend.signOut();
+}
+function renderNoAccess() {
+  root.innerHTML = adminShell(`<div class="center"><div class="login card" style="padding:28px 22px">
+    <div class="logo">${ICON.logo}</div><h1>No access</h1>
+    <p><b>${esc(S.auth.email)}</b> is not an admin of this clinic. Ask an owner to add this email in Console → Team.</p>
+    <div style="display:grid;gap:10px;margin-top:20px"><button class="btn ghost block" id="so">Sign out</button><a class="btn ghost block" href="#" style="text-decoration:none">← Patient page</a></div>
+  </div></div>`, false);
+  $("#so").onclick = () => backend.signOut();
+}
+
+function renderConsole() {
+  const owner = isOwner();
+  if (!owner && S.adminTab !== "queue") S.adminTab = "queue";
+  const tab = S.adminTab;
+  root.innerHTML = adminShell(`
+    <header class="adm-top">
+      <div class="logo">${ICON.logo}</div>
+      <div class="brand"><div class="en">Ambika Console</div><div class="hn" style="font-family:var(--sans)">${keyLabel(S.key, "en")} · numbers reset ${fmt(S.settings.resetMin)}</div></div>
+      <div class="who"><b>${esc(S.auth.name || S.auth.email)}</b>${esc(S.auth.email)}<br><span class="role ${S.auth.role}">${S.auth.role}</span></div>
+    </header>
+    ${S.settings._unset ? `<div class="warn">${ICON.info}<span style="flex:1">Online booking is off until settings are saved once.</span>${owner ? `<button class="sbtn dark" id="initset">Save default settings</button>` : ""}</div>` : ""}
+    <nav class="tabs">
+      <button data-tab="queue" class="${tab === "queue" ? "on" : ""}">Queue</button>
+      ${owner ? `<button data-tab="settings" class="${tab === "settings" ? "on" : ""}">Settings</button><button data-tab="team" class="${tab === "team" ? "on" : ""}">Team</button>` : ""}
+    </nav>
+    <div id="tabbody">${tab === "queue" ? queueHTML() : tab === "settings" ? settingsHTML() : teamHTML()}</div>
+    <footer><div><a href="#">View patient page</a> · <a href="#admin" id="so">Sign out</a>${backend.mode === "demo" ? ` · <a href="#admin" id="rd">Reset demo data</a>` : ""}</div></footer>
+  `);
+  root.querySelectorAll("[data-tab]").forEach((b) => b.onclick = () => { S.adminTab = b.dataset.tab; S.settingsDirty = false; renderConsole(); });
+  $("#so").onclick = (e) => { e.preventDefault(); backend.signOut(); };
+  const rd = $("#rd"); if (rd) rd.onclick = (e) => { e.preventDefault(); backend.resetDemo(); };
+  const is = $("#initset"); if (is) is.onclick = () => backend.saveSettings({ ...DEFAULTS }).then(() => toast("Settings saved")).catch((e) => toast("Failed: " + (e.code || e.message)));
+  if (tab === "queue") bindQueue(); else if (tab === "settings") bindSettings(); else bindTeam();
+}
+
+/* ---------------- queue */
+const tokenBy = (no) => S.tokens.find((x) => x.no === no);
+const contactOf = (no) => S.contacts[no] || {};
+const inTok = () => S.tokens.find((x) => x.status === "in");
+const nextWaiting = (excl) => S.tokens.filter((x) => x.status === "waiting" && x.no !== excl).sort((a, b) => a.no - b.no)[0];
+
+function queueHTML() {
+  const c = counts(), cur = inTok(), cc = cur ? contactOf(cur.no) : null;
+  const ups = S.tokens.filter((x) => x.status === "waiting").slice(0, 4);
+  const { rs, text } = regLabel();
+  const f = S.filter;
+  const list = S.tokens.filter((x) => f === "all" ? true : f === "active" ? (x.status === "waiting" || x.status === "in") : x.status === f);
+  const lastDone = S.tokens.filter((x) => x.status === "done" || x.status === "skipped").sort((a, b) => b.at - a.at)[0];
+  return `<div class="grid2">
+    <div>
+      <section class="card now" style="margin-top:0">
+        <div class="top2"><span class="live"><i></i>NOW WITH DOCTOR</span><span>${S.day.next} booked</span></div>
+        <div class="nn"><b>${cur ? cur.no : "—"}</b>
+          <div class="p">${cur ? `<div class="nm">${esc(cc.name || "Patient")}</div><div class="pl">${esc(cc.place || "")}${cc.phone ? ` · <a href="tel:+91${esc(cc.phone)}">${esc(cc.phone)}</a>` : ""}</div>` : `<div class="nm">${c.waiting ? "Ready to start" : "Queue empty"}</div><div class="pl">${c.waiting ? `${c.waiting} waiting` : "No one waiting"}</div>`}</div>
+        </div>
+        <div class="ctrl">
+          <button class="btn b1" id="q-next" ${!cur && !c.waiting ? "disabled" : ""}>${ICON.check}<span>${cur ? "Done · Next" : `Call #${nextWaiting()?.no ?? ""}`}</span></button>
+          <button class="btn b2" id="q-skip" ${cur ? "" : "disabled"} title="Patient absent">Absent</button>
+          <button class="btn b3" id="q-undo" ${lastDone ? "" : "disabled"} title="Bring back the previous number">Undo</button>
+        </div>
+        ${ups.length ? `<div class="upnext">Up next: ${ups.map((x) => `<span>#${x.no} ${esc(firstName(contactOf(x.no).name))}</span>`).join("")}</div>` : ""}
+      </section>
+      <div class="kpis">
+        <div class="kpi"><b>${S.day.next}</b><span>Booked</span></div>
+        <div class="kpi"><b>${c.waiting}</b><span>Waiting</span></div>
+        <div class="kpi"><b>${c.done}</b><span>Done</span></div>
+        <div class="kpi"><b>${c.skipped}</b><span>Absent</span></div>
+      </div>
+      <section class="card">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h2 style="font-family:var(--serif);font-weight:600;font-size:19px">Online booking</h2><span class="pill ${rs === "open" ? "open" : "closed"}" style="margin-left:auto">${text}</span></div>
+        <p class="sub">Window ${fmt(S.settings.openMin)} – ${fmt(S.settings.closeMin)} · doctor ${fmt(S.settings.sitFrom)} – ${fmt(S.settings.sitTo)}${S.settings.maxTokens ? ` · max ${S.settings.maxTokens}` : ""}</p>
+        <div class="regctl">
+          ${isOwner() ? `
+            ${S.settings.paused ? `<button class="sbtn green" data-reg="resume">Resume booking</button>` : `<button class="sbtn red" data-reg="pause">Pause booking</button>`}
+            ${S.settings.forceOpenDay === S.key ? `<button class="sbtn" data-reg="unforce">Back to normal timing</button>` : `<button class="sbtn" data-reg="force">Open now for today</button>`}` : `<span class="hint">Only owners can change booking.</span>`}
+          <button class="sbtn dark" id="walkin" style="margin-left:auto">+ Add walk-in</button>
+        </div>
+      </section>
+    </div>
+    <section class="card" style="margin-top:0">
+      <div style="display:flex;align-items:center;gap:10px"><h2 style="font-family:var(--serif);font-weight:600;font-size:19px">Today's list</h2><span class="hint" style="margin:0 0 0 auto">${S.tokens.length} total</span></div>
+      <div class="filters">${[["active", "Active"], ["all", "All"], ["done", "Done"], ["skipped", "Absent"], ["cancelled", "Cancelled"]].map(([k, l]) => `<button data-f="${k}" class="${f === k ? "on" : ""}">${l}</button>`).join("")}</div>
+      <div class="list">${list.length ? list.map(rowHTML).join("") : `<p class="empty">Nothing here.</p>`}</div>
+    </section>
+  </div>`;
+}
+function rowHTML(x) {
+  const ct = contactOf(x.no);
+  const time = x.createdAt ? new Date(x.createdAt + IST * 60000).toISOString().slice(11, 16) : "";
+  return `<div class="it ${x.status}">
+    <div class="no">${x.no}</div>
+    <div><div class="nm">${esc(ct.name || "—")}<span class="st ${x.status}">${x.status === "skipped" ? "absent" : x.status === "in" ? "with doctor" : x.status}</span></div>
+      <div class="meta">${esc(ct.place || "")}${ct.phone ? ` · <a class="nw" href="tel:+91${esc(ct.phone)}">${esc(ct.phone)}</a>` : ""}${time ? ` · <span class="nw">${fmt(fromHHMM(time))}</span>` : ""}<span class="src">${x.by === "walkin" ? "walk-in" : "online"}</span></div></div>
+    <div class="acts">${x.status === "waiting" ? `<button class="ib" title="Call now" data-act="call" data-no="${x.no}">${ICON.call}</button>` : ""}<button class="ib" data-menu="${x.no}" title="More">${ICON.dots}</button></div>
+  </div>`;
+}
+async function run(fn, okMsg) { try { await fn(); okMsg && toast(okMsg); } catch (e) { console.error(e); toast("Failed: " + (e.code || e.message)); } }
+const A = {
+  async next(markAs = "done") {
+    const cur = inTok(); const ch = {};
+    if (cur) ch[cur.no] = { status: markAs };
+    const nx = nextWaiting(cur?.no);
+    if (nx) ch[nx.no] = { status: "in" };
+    await backend.adminWrite(S.key, ch, nx ? nx.no : 0);
+    toast(nx ? `Calling #${nx.no}${contactOf(nx.no).name ? " · " + contactOf(nx.no).name : ""}` : "Queue finished");
+  },
+  async call(no) {
+    const cur = inTok(); const ch = {};
+    if (cur && cur.no !== no) ch[cur.no] = { status: "waiting" };
+    ch[no] = { status: "in" };
+    await backend.adminWrite(S.key, ch, no); toast(`Calling #${no}`);
+  },
+  async undo() {
+    const last = S.tokens.filter((x) => x.status === "done" || x.status === "skipped").sort((a, b) => b.at - a.at)[0];
+    if (!last) return;
+    const cur = inTok(); const ch = {};
+    if (cur) ch[cur.no] = { status: "waiting" };
+    ch[last.no] = { status: "in" };
+    await backend.adminWrite(S.key, ch, last.no); toast(`Back to #${last.no}`);
+  },
+  async set(no, status) {
+    const x = tokenBy(no); const ch = { [no]: { status } };
+    const current = x?.status === "in" && status !== "in" ? 0 : status === "in" ? no : undefined;
+    await backend.adminWrite(S.key, ch, current);
+  },
+};
+function bindQueue() {
+  $("#q-next").onclick = () => run(() => A.next("done"));
+  $("#q-skip").onclick = () => run(() => A.next("skipped"));
+  $("#q-undo").onclick = () => run(() => A.undo());
+  root.querySelectorAll("[data-f]").forEach((b) => b.onclick = () => { S.filter = b.dataset.f; renderConsole(); });
+  root.querySelectorAll("[data-act=call]").forEach((b) => b.onclick = () => run(() => A.call(+b.dataset.no)));
+  root.querySelectorAll("[data-reg]").forEach((b) => b.onclick = () => {
+    const s = { ...S.settings }; const a = b.dataset.reg;
+    if (a === "pause") s.paused = true; if (a === "resume") s.paused = false;
+    if (a === "force") { s.forceOpenDay = S.key; s.paused = false; } if (a === "unforce") s.forceOpenDay = "";
+    run(() => backend.saveSettings(s), a === "pause" ? "Booking paused" : a === "resume" ? "Booking resumed" : a === "force" ? "Booking open for today" : "Back to normal timing");
+  });
+  $("#walkin").onclick = openWalkin;
+  root.querySelectorAll("[data-menu]").forEach((b) => b.onclick = (e) => {
+    e.stopPropagation(); closeMenu();
+    const no = +b.dataset.menu, x = tokenBy(no); if (!x) return;
+    const items = [];
+    if (x.status !== "in") items.push(["call", "Call now (with doctor)"]);
+    if (x.status !== "done") items.push(["done", "Mark done"]);
+    if (x.status === "waiting" || x.status === "in") items.push(["skipped", "Mark absent"]);
+    if (x.status !== "waiting") items.push(["waiting", "Put back in queue"]);
+    if (x.status !== "cancelled") items.push(["cancelled", "Cancel booking", "danger"]);
+    menuEl = document.createElement("div"); menuEl.className = "menu";
+    menuEl.innerHTML = `<div class="hint" style="padding:6px 12px 4px">#${no} ${esc(contactOf(no).name || "")}</div>` + items.map(([k, l, c]) => `<button data-m="${k}" class="${c || ""}">${l}</button>`).join("");
+    document.body.appendChild(menuEl);
+    const r = b.getBoundingClientRect(), mw = menuEl.offsetWidth, mh = menuEl.offsetHeight;
+    menuEl.style.left = Math.max(8, Math.min(innerWidth - mw - 8, r.right - mw)) + "px";
+    menuEl.style.top = (r.bottom + mh + 8 > innerHeight ? r.top - mh - 6 : r.bottom + 6) + "px";
+    menuEl.querySelectorAll("[data-m]").forEach((m) => m.onclick = async () => {
+      const k = m.dataset.m; closeMenu();
+      if (k === "call") return run(() => A.call(no));
+      if (k === "cancelled" && !(await confirmBox(`Cancel #${no}?`, "The patient will see that their booking was cancelled. The number is not reused."))) return;
+      run(() => A.set(no, k));
+    });
+  });
+}
+function openWalkin() {
+  const sc = openModal(`<div class="sheet"><h3>Add walk-in patient</h3><p>Gets the next number in the same series as online bookings. Works even when online booking is closed.</p>
+    <form id="wf" novalidate>
+      <div class="field"><label>Name</label><input class="inp" id="w-name" maxlength="60"></div>
+      <div class="field"><label>Coming from</label><input class="inp" id="w-place" maxlength="60"></div>
+      <div class="field"><label>Mobile (optional)</label><div class="phone"><span class="cc">+91</span><input class="inp" id="w-phone" inputmode="numeric" maxlength="14"></div></div>
+      <div class="btns"><button class="btn primary block" type="submit">Give number</button><button class="btn ghost block" type="button" data-close>Cancel</button></div>
+    </form></div>`);
+  setTimeout(() => $("#w-name")?.focus(), 50);
+  sc.querySelector("#wf").onsubmit = async (e) => {
+    e.preventDefault();
+    const name = $("#w-name").value.trim(), place = $("#w-place").value.trim(), phone = cleanPhone($("#w-phone").value);
+    if (name.length < 2) return toast("Enter the patient's name");
+    if (phone && !/^[6-9]\d{9}$/.test(phone)) return toast("Mobile number looks wrong");
+    try { const r = await backend.register(S.key, { name, place, phone }, "walkin"); closeModal(); toast(r.existing ? `Already booked: #${r.no}` : `Walk-in given #${r.no}`); }
+    catch (err) { toast("Failed: " + (err.code || err.message)); }
+  };
+}
+
+/* ---------------- settings */
+function settingsHTML() {
+  const s = S.settings;
+  const time = (id, v, label, hint) => `<div class="field"><label for="${id}">${label}</label><input class="inp" type="time" id="${id}" value="${toHHMM(v)}">${hint ? `<div class="hint">${hint}</div>` : ""}</div>`;
+  return `<section class="card" style="margin-top:0"><form id="setform" novalidate>
+    <h2 style="font-family:var(--serif);font-weight:600;font-size:20px">Booking &amp; timings</h2>
+    <div class="form-grid two">
+      ${time("s-open", s.openMin, "Online booking opens", "Patients can book from this time.")}
+      ${time("s-close", s.closeMin, "Online booking closes", "Walk-ins can still be added after this.")}
+      ${time("s-from", s.sitFrom, "Doctor sits from", "Used for patients' expected time.")}
+      ${time("s-to", s.sitTo, "Doctor sits until", "")}
+      ${time("s-reset", s.resetMin, "Daily reset (numbers back to 0)", "Must be before booking opens. Yesterday's data is deleted.")}
+      <div class="field"><label for="s-avg">Minutes per patient (estimate)</label><input class="inp" type="number" min="1" max="60" id="s-avg" value="${s.avgMin}"></div>
+      <div class="field"><label for="s-max">Max numbers per day</label><input class="inp" type="number" min="0" max="999" id="s-max" value="${s.maxTokens}"><div class="hint">0 = no limit.</div></div>
+    </div>
+    <div class="sec">Weekly off</div>
+    <p class="hint">Online booking stays closed on these days.</p>
+    <div class="days" style="margin-top:10px">${DOW.map((d, i) => `<button type="button" data-dow="${i + 1}" class="${(s.offDays || []).includes(i + 1) ? "on" : ""}">${d}</button>`).join("")}</div>
+    <div class="sec">Notice for patients</div>
+    <div class="field" style="margin-top:8px"><input class="inp" id="s-notice" maxlength="160" value="${esc(s.notice)}" placeholder="e.g. Doctor will sit from 5:30 PM today"><div class="hint">Shown at the top of the patient page. Leave empty to hide.</div></div>
+    <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap"><button class="btn primary" type="submit">Save settings</button><button class="btn ghost" type="button" id="s-revert">Discard changes</button></div>
+  </form></section>`;
+}
+function bindSettings() {
+  const form = $("#setform");
+  form.addEventListener("input", () => (S.settingsDirty = true));
+  form.querySelectorAll("[data-dow]").forEach((b) => b.onclick = () => { b.classList.toggle("on"); S.settingsDirty = true; });
+  $("#s-revert").onclick = () => { S.settingsDirty = false; renderConsole(); };
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const s = { ...S.settings,
+      openMin: fromHHMM($("#s-open").value), closeMin: fromHHMM($("#s-close").value),
+      sitFrom: fromHHMM($("#s-from").value), sitTo: fromHHMM($("#s-to").value), resetMin: fromHHMM($("#s-reset").value),
+      avgMin: Math.max(1, Math.min(60, +$("#s-avg").value || 5)), maxTokens: Math.max(0, Math.min(999, Math.floor(+$("#s-max").value || 0))),
+      offDays: [...form.querySelectorAll("[data-dow].on")].map((b) => +b.dataset.dow), notice: $("#s-notice").value.trim().slice(0, 160) };
+    if (s.closeMin <= s.openMin) return toast("Booking must close after it opens");
+    if (s.resetMin > s.openMin) return toast("Daily reset must be at or before booking opens");
+    if (s.sitTo <= s.sitFrom) return toast("Doctor's end time must be after start time");
+    try { await backend.saveSettings(s); S.settingsDirty = false; toast("Settings saved"); checkDayRollover(); renderConsole(); }
+    catch (err) { toast("Failed: " + (err.code || err.message)); }
+  };
+}
+
+/* ---------------- team */
+function teamHTML() {
+  const r = S.roles, me = S.auth.email;
+  const person = (e, role) => `<div class="person"><div class="av">${esc(e[0])}</div><div class="e">${esc(e)}${e === me ? ` <span class="hint">(you)</span>` : ""}</div><span class="role ${role}">${role}</span>
+    ${role === "owner" && r.owners.length <= 1 ? "" : `<button class="ib" data-rm="${esc(e)}" data-role="${role}" title="Remove">✕</button>`}</div>`;
+  return `<section class="card" style="margin-top:0">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h2 style="font-family:var(--serif);font-weight:600;font-size:20px">Team</h2><button class="sbtn dark" id="addp" style="margin-left:auto">+ Add person</button></div>
+    <p class="sub">Owners control everything: queue, settings and team. Admins run the queue and add walk-ins. Add as many as you need. Each person signs in with their Google account.</p>
+    <div class="sec">Owners (${r.owners.length})</div><div class="people">${r.owners.map((e) => person(e, "owner")).join("")}</div>
+    <div class="sec">Admins (${r.admins.length})</div><div class="people">${r.admins.length ? r.admins.map((e) => person(e, "admin")).join("") : `<p class="empty">No admins yet.</p>`}</div>
+  </section>`;
+}
+function bindTeam() {
+  $("#addp").onclick = () => {
+    const sc = openModal(`<div class="sheet"><h3>Add a person</h3><p>They sign in at this page (#admin) with this Google account.</p>
+      <form id="pf" novalidate><div class="field"><label>Gmail / Google account email</label><input class="inp" id="p-email" type="email" autocomplete="off" placeholder="name@gmail.com"></div>
+      <div class="field"><label>Role</label><select class="inp" id="p-role"><option value="admin">Admin: runs the queue</option><option value="owner">Owner: full control</option></select></div>
+      <div class="btns"><button class="btn primary block" type="submit">Add</button><button class="btn ghost block" type="button" data-close>Cancel</button></div></form></div>`);
+    setTimeout(() => $("#p-email")?.focus(), 50);
+    sc.querySelector("#pf").onsubmit = async (e) => {
+      e.preventDefault();
+      const email = $("#p-email").value.trim().toLowerCase(), role = $("#p-role").value;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return toast("Enter a valid email");
+      const r = { owners: S.roles.owners.filter((x) => x !== email), admins: S.roles.admins.filter((x) => x !== email) };
+      (role === "owner" ? r.owners : r.admins).push(email);
+      try { await backend.saveRoles(r); closeModal(); toast(`${email} added as ${role}`); } catch (err) { toast("Failed: " + (err.code || err.message)); }
+    };
+  };
+  root.querySelectorAll("[data-rm]").forEach((b) => b.onclick = async () => {
+    const email = b.dataset.rm, role = b.dataset.role;
+    const self = email === S.auth.email;
+    if (!(await confirmBox(`Remove ${email}?`, self ? "You will lose access to this console immediately." : `They will no longer be able to ${role === "owner" ? "manage the clinic" : "run the queue"}.`, "Remove"))) return;
+    const r = { owners: S.roles.owners.filter((x) => x !== email), admins: S.roles.admins.filter((x) => x !== email) };
+    if (!r.owners.length) return toast("At least one owner is required");
+    run(() => backend.saveRoles(r), "Removed");
+  });
+}
+
+/* ================================================================ BOOT */
+async function boot() {
+  render();
+  try {
+    backend = FIREBASE_CONFIG ? await makeFirebaseBackend(FIREBASE_CONFIG) : makeDemoBackend();
+  } catch (e) {
+    console.error(e);
+    root.insertAdjacentHTML("afterbegin", `<div class="demo">Could not load the app. Check your internet connection and refresh.</div>`);
+    return;
+  }
+  let first = true;
+  backend.onSettings((s) => {
+    S.settings = s;
+    const k = dayKeyFor(s);
+    if (first || k !== S.key) { first = false; S.key = k; subscribeDay(); }
+    render();
+  });
+  backend.onAuth((a) => {
+    const wasAdmin = isAdmin(); const prevRole = S.auth?.role;
+    S.auth = a;
+    if (isAdmin() && (!wasAdmin || prevRole !== a.role)) { subscribeAdmin(); backend.cleanup(S.key).catch((e) => console.warn("cleanup", e)); }
+    if (!isAdmin() && wasAdmin) subscribeAdmin();
+    if (lastView === "admin") renderAdmin();
+  });
+  setInterval(() => { checkDayRollover(); update(); }, 30000);
+  if ("serviceWorker" in navigator && location.protocol === "https:" && window.top === window.self) {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
+}
+boot();
+</script>
+</body>
+</html>
