@@ -317,6 +317,10 @@ const FIREBASE_CONFIG = {
   appId: "1:764920665037:web:459d501225d83f8efd2a84"
 };
 
+// Firebase App Check (blocks bots from booking). Paste the reCAPTCHA v3 SITE key here after
+// registering this site in Firebase Console > App Check. Empty = App Check off (nothing changes).
+const APP_CHECK_SITE_KEY = "";
+
 const DOCTOR_PHOTO = "doctor.jpg";
 
 const CLINIC = {
@@ -539,6 +543,12 @@ async function makeFirebaseBackend(cfg) {
   const V = "10.12.2", B = `https://www.gstatic.com/firebasejs/${V}/`;
   const [A, F, AU] = await Promise.all([import(B + "firebase-app.js"), import(B + "firebase-firestore.js"), import(B + "firebase-auth.js")]);
   const app = A.initializeApp(cfg);
+  if (APP_CHECK_SITE_KEY) {
+    try {
+      const AC = await import(B + "firebase-app-check.js");
+      AC.initializeAppCheck(app, { provider: new AC.ReCaptchaV3Provider(APP_CHECK_SITE_KEY), isTokenAutoRefreshEnabled: true });
+    } catch (e) { console.error("App Check failed to start", e); }
+  }
   const db = F.getFirestore(app);
   const auth = AU.getAuth(app);
   const { doc, collection, onSnapshot, runTransaction, getDoc, getDocs, setDoc, writeBatch, serverTimestamp } = F;
