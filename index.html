@@ -247,6 +247,15 @@ footer a{color:var(--muted)}
 .st.in{background:var(--red);color:#fff}
 .st.done{background:#EEE8DF;color:#8A8178}
 .st.skipped{background:var(--amber-l);color:var(--amber)}
+.nfy{margin-top:10px;font-size:14px;color:var(--muted)}
+.nfy .btn{min-height:44px;font-size:15px}
+.nfy p{margin:6px 2px 0;line-height:1.4}
+.nfy.on,.nfy.warn{display:flex;gap:8px;align-items:flex-start;padding:9px 11px;border-radius:12px;background:#E7F3EC;color:#1F5E3A}
+.nfy.warn{background:#FBF0E1;color:#7A4B00}
+.nfy.on svg,.nfy.warn svg{flex:none;margin-top:1px}
+.nfy.big{margin:14px 0 4px;text-align:center}
+.st.bell{background:#E7F3EC;color:#1F5E3A;padding:2px 6px;display:inline-flex;align-items:center}
+.st.bell svg{width:13px;height:13px}
 .st.prio{background:#FBE9C6;color:#7A4B00}
 .st.cancelled{background:#F1E4E3;color:#9B6B68}
 .src{font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:4px}
@@ -321,6 +330,12 @@ const FIREBASE_CONFIG = {
 // registering this site in Firebase Console > App Check. Empty = App Check off (nothing changes).
 const APP_CHECK_SITE_KEY = "";
 
+// Phone notifications (Web Push). PUSH_URL = address of the Cloudflare Worker that sends them.
+// Empty = notifications switched off (nothing else changes).
+const PUSH_URL = "";
+const VAPID_PUBLIC = "BF2-0CDv-iK1VhUlv78OzNuZ0PvoQlL-K0BBG5CBzPmhkoE2NFbAlkDSHgd7uxg-rXa4Qzuzl6si057-I6p7ZH0";
+const PUSH_SOON = 3; // "start for the clinic" alert goes out when this many patients are ahead
+
 const DOCTOR_PHOTO = "doctor.jpg";
 
 const CLINIC = {
@@ -368,6 +383,14 @@ const TXT = {
     validToday: "Valid for today only", ok: "Done", another: "Book for another patient",
     queueToday: "Today's numbers", noTokens: "No numbers booked yet today.",
     lgIn: "With doctor", lgWait: "Waiting", lgDone: "Done", lgSkip: "Missed", lgMe: "You",
+    notifyBtn: "Turn on notifications", notifyOn: "Notifications on. Your phone will alert you when your turn is near.",
+    notifyHint: "Turn on notifications and your phone will tell you when to leave for the clinic. No need to sit and wait.",
+    notifyDenied: "Notifications are blocked. In Chrome open ⋮ > Settings > Site settings > Notifications and allow this site.",
+    notifyIos: "On iPhone: tap Share, then 'Add to Home Screen'. Open the app from your home screen and turn on notifications.",
+    notifyFail: "Could not turn on notifications. Please try again.",
+    pSoonT: "Your turn is coming soon (#{n})", pSoonB: "{a} patients before you, about {m} minutes. Please start for the clinic now.",
+    pNextT: "You are next (#{n})", pNextB: "Please reach the clinic now. Your turn is right after the current patient.",
+    pInT: "It's your turn (#{n})", pInB: "Please go in to see the doctor now.",
     yourDoctor: "Your doctor", doctor: "Dr. N. K. Prajapati", call: "Call clinic", directions: "Directions",
     timings: "Doctor's timing", address: "Address", addressV: "Jainamore, Bokaro, Jharkhand", bookTimes: "Online booking",
     how: "How it works", how1: "Book your number from {t}, from anywhere", how2: "Watch the live number on this page", how3: "Reach the clinic a little before your turn",
@@ -394,6 +417,14 @@ const TXT = {
     validToday: "केवल आज के लिए मान्य", ok: "ठीक है", another: "दूसरे मरीज़ का नंबर लगाएं",
     queueToday: "आज के नंबर", noTokens: "आज अभी कोई नंबर नहीं लगा है।",
     lgIn: "डॉक्टर के पास", lgWait: "बाकी", lgDone: "हो गए", lgSkip: "छूट गए", lgMe: "आपका",
+    notifyBtn: "सूचना (Notification) चालू करें", notifyOn: "सूचना चालू है। बारी पास आने पर फ़ोन पर बताया जाएगा।",
+    notifyHint: "Notification चालू करें, बारी पास आने पर फ़ोन पर सूचना मिलेगी। क्लिनिक में बैठकर इंतज़ार करने की ज़रूरत नहीं।",
+    notifyDenied: "Notification बंद है। Chrome में ⋮ > Settings > Site settings > Notifications में जाकर इस साइट को Allow करें।",
+    notifyIos: "iPhone पर: Share दबाएँ, फिर 'Add to Home Screen'। होम स्क्रीन से ऐप खोलकर Notification चालू करें।",
+    notifyFail: "Notification चालू नहीं हो पाया। फिर से कोशिश करें।",
+    pSoonT: "आपकी बारी आने वाली है (#{n})", pSoonB: "आपसे पहले {a} मरीज़, लगभग {m} मिनट। अभी क्लिनिक के लिए निकलें।",
+    pNextT: "अगला नंबर आपका है (#{n})", pNextB: "तुरंत क्लिनिक पहुँचें। अभी वाले मरीज़ के बाद आपकी बारी है।",
+    pInT: "आपकी बारी है (#{n})", pInB: "अभी डॉक्टर के पास अंदर जाइए।",
     yourDoctor: "आपके डॉक्टर", doctor: "डॉ. एन. के. प्रजापति", call: "कॉल करें", directions: "रास्ता देखें",
     timings: "डॉक्टर का समय", address: "पता", addressV: "जैनामोड़, बोकारो, झारखंड", bookTimes: "ऑनलाइन बुकिंग",
     how: "कैसे काम करता है", how1: "{t} बजे से कहीं से भी अपना नंबर लगाएं", how2: "इसी पेज पर लाइव नंबर देखते रहें", how3: "अपनी बारी से थोड़ा पहले क्लिनिक पहुँचें",
@@ -444,11 +475,12 @@ async function guardId(phone, name) {
 const firstName = (n) => String(n || "").trim().split(/\s+/)[0] || "";
 
 const ICON = {
-  logo: `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M9 31C9 18 18 9 32 8c0 14-9 23-23 23z" fill="#FCEFE6"/><path d="M10 30C16 23 21 18 28 12" stroke="#A11D21" stroke-width="2.2" stroke-linecap="round"/><path d="M17 24l-1-6M22 19l-1-5M17 24l6-.5M22 19l5-.6" stroke="#A11D21" stroke-width="1.6" stroke-linecap="round"/></svg>`,
+  logo: `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true"><g stroke="#FCEFE6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 7.5v7a7 7 0 0 0 14 0v-7"/><path d="M18 21.5v4.5a6.5 6.5 0 0 0 13 0v-3"/></g><g fill="#FCEFE6"><rect x="8.6" y="5" width="4.8" height="2.6" rx="1.3"/><rect x="22.6" y="5" width="4.8" height="2.6" rx="1.3"/><circle cx="31" cy="19.5" r="4.2"/></g><circle cx="31" cy="19.5" r="1.7" fill="#A11D21"/></svg>`,
   phone: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>`,
   pin: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
   clock: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
   ticket: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M13 6v12" stroke-dasharray="2 2"/></svg>`,
+  bell: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>`,
   info: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>`,
   dots: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>`,
   check: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`,
@@ -536,6 +568,10 @@ function makeDemoBackend() {
     async saveRoles(r) { st.roles = r; save(); },
     async cleanup(k) { for (const key of Object.keys(st.days)) if (key !== k) delete st.days[key]; save(); },
     async resetDemo() { localStorage.removeItem(LS); location.reload(); },
+    onPush: (k, cb) => on(() => JSON.parse(JSON.stringify(st.days[k]?.push || {})), cb),
+    async savePush(k, no, sub, lang) { const d = day(k); d.push ||= {}; d.push[no] = { ...(d.push[no] || {}), sub, lang }; save(); },
+    async markPush(k, no, stage, on = true) { const p = day(k).push?.[no]; if (!p) return false; p.sent ||= {}; if (on && p.sent[stage]) return false; p.sent[stage] = on; save(); return true; },
+    async sendPush(items) { console.log("[demo push]", items); toast("Demo: notified " + items.map((i) => "#" + i.id).join(", ")); },
   };
 }
 
@@ -618,13 +654,32 @@ async function makeFirebaseBackend(cfg) {
     async saveSettings(s) { const c = { ...s }; delete c._unset; await setDoc(doc(db, "config", "settings"), c); },
     async patchSettings(p) { await setDoc(doc(db, "config", "settings"), p, { merge: true }); },
     async saveRoles(r) { await setDoc(doc(db, "config", "roles"), r); },
+    onPush: (k, cb) => onSnapshot(collection(db, "days", k, "push"), (qs) => { const o = {}; qs.docs.forEach((d) => (o[d.id] = d.data())); cb(o); }, errLog),
+    async savePush(k, no, sub, lang) { await setDoc(doc(db, "days", k, "push", String(no)), { sub, lang, at: serverTimestamp() }, { merge: true }); },
+    async markPush(k, no, stage, on = true) {
+      const ref = doc(db, "days", k, "push", String(no));
+      return runTransaction(db, async (tx) => {
+        const d = await tx.get(ref);
+        if (!d.exists() || (on && d.data().sent?.[stage])) return false;
+        tx.update(ref, { ["sent." + stage]: on }); return true;
+      });
+    },
+    async sendPush(items) {
+      const tok = await auth.currentUser?.getIdToken(); if (!tok) throw new Error("not signed in");
+      const r = await fetch(PUSH_URL, { method: "POST", headers: { Authorization: "Bearer " + tok, "Content-Type": "application/json" }, body: JSON.stringify({ items }) });
+      if (!r.ok) throw new Error("push server " + r.status);
+      const j = await r.json().catch(() => ({}));
+      const k = items[0]?.day;
+      for (const x of j.results || []) if ((x.status === 404 || x.status === 410) && k) F.deleteDoc(doc(db, "days", k, "push", String(x.id))).catch(() => {});
+      return j;
+    },
     async cleanup(k) {
       // Daily wipe: delete every older day (tokens, contacts, guards, day doc).
       const days = await getDocs(collection(db, "days"));
       for (const d of days.docs) {
         if (d.id >= k) continue;
         const refs = [];
-        for (const sub of ["tokens", "contacts", "guard"]) (await getDocs(collection(db, "days", d.id, sub))).docs.forEach((x) => refs.push(x.ref));
+        for (const sub of ["tokens", "contacts", "guard", "push"]) (await getDocs(collection(db, "days", d.id, sub))).docs.forEach((x) => refs.push(x.ref));
         refs.push(d.ref);
         for (let i = 0; i < refs.length; i += 400) { const b = writeBatch(db); refs.slice(i, i + 400).forEach((r) => b.delete(r)); await b.commit(); }
       }
@@ -639,6 +694,7 @@ const S = {
   key: dayKeyFor(DEFAULTS),
   day: { next: 0, current: 0 },
   tokens: [],
+  push: {},
   contacts: {},
   roles: { owners: [], admins: [] },
   auth: undefined, // undefined = checking, null = signed out
@@ -651,7 +707,8 @@ const S = {
 };
 let backend = null;
 let unsubDay = [], unsubAdmin = [];
-const t = (k, vars = {}) => (TXT[S.lang][k] ?? TXT.en[k] ?? k).replace(/\{(\w+)\}/g, (_, v) => vars[v]);
+const tl = (lang, k, vars = {}) => (TXT[lang]?.[k] ?? TXT.en[k] ?? k).replace(/\{(\w+)\}/g, (_, v) => vars[v]);
+const t = (k, vars = {}) => tl(S.lang, k, vars);
 
 function regState(s, key, next) {
   if (s._unset) return "paused";
@@ -682,10 +739,12 @@ function subscribeAdmin() {
   if (!isAdmin()) { S.contacts = {}; return; }
   unsubAdmin.push(backend.onContacts(S.key, (c) => { S.contacts = c; update(); }));
   if (isOwner()) unsubAdmin.push(backend.onRoles((r) => { S.roles = r; update(); }));
+  S.push = {};
+  if (PUSH_URL || backend.mode === "demo") unsubAdmin.push(backend.onPush(S.key, (p) => { S.push = p; pushTick(); if (lastView === "admin") renderAdmin(true); }));
 }
 function checkDayRollover() {
   const k = dayKeyFor(S.settings);
-  if (k !== S.key) { S.key = k; S.day = { next: 0, current: 0 }; S.tokens = []; S.contacts = {}; subscribeDay(); if (isAdmin()) backend.cleanup(k).catch(() => {}); }
+  if (k !== S.key) { S.key = k; S.day = { next: 0, current: 0 }; S.tokens = []; S.contacts = {}; S.push = {}; subscribeDay(); if (isAdmin()) backend.cleanup(k).catch(() => {}); }
 }
 
 /* ================================================================ ROUTER / RENDER */
@@ -701,6 +760,7 @@ function render() {
 }
 function update(bump = false) {
   if (lastView === "home") updateHome(bump); else if (lastView === "admin") renderAdmin(true);
+  pushTick();
 }
 addEventListener("hashchange", () => { closeMenu(); render(); scrollTo(0, 0); });
 
@@ -793,7 +853,96 @@ function aheadOf(no) {
 }
 function estFor(ahead) {
   const s = S.settings; const base = Math.max(nowMin(), s.sitFrom);
-  return fmt(Math.round(base + ahead * s.avgMin));
+  return fmt(Math.round(base + ahead * avgConsult()));
+}
+// Minutes per patient: learnt from today's finished consultations once there are a few, else the setting.
+function avgConsult() {
+  const ts = S.tokens.filter((x) => x.status === "done" && x.at).map((x) => x.at).sort((a, b) => a - b);
+  if (ts.length >= 4) return Math.min(20, Math.max(2, (ts[ts.length - 1] - ts[0]) / (ts.length - 1) / 60000));
+  return S.settings.avgMin || 5;
+}
+
+/* ---------------------------------------------------------------- phone notifications */
+const pushSupported = () => !!(PUSH_URL || backend?.mode === "demo") && "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent);
+const isStandalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const pushNos = () => { const v = store.get("ambika_push", {}); return v.key === S.key ? v.nos || [] : []; };
+function pushState(no) {
+  if (!(PUSH_URL || backend?.mode === "demo")) return "none";
+  if (isIOS() && !isStandalone() && !("PushManager" in window)) return "ios";
+  if (!pushSupported()) return "none";
+  if (Notification.permission === "denied") return "denied";
+  return Notification.permission === "granted" && pushNos().includes(no) ? "on" : "off";
+}
+function notifyBlock(no, big = false) {
+  const st = pushState(no);
+  if (st === "none") return "";
+  if (st === "on") return `<div class="nfy on">${ICON.bell}<span>${t("notifyOn")}</span></div>`;
+  if (st === "ios") return `<div class="nfy warn">${ICON.bell}<span>${t("notifyIos")}</span></div>`;
+  if (st === "denied") return `<div class="nfy warn">${ICON.bell}<span>${t("notifyDenied")}</span></div>`;
+  return `<div class="nfy ${big ? "big" : ""}"><button class="btn primary block" data-notify="${no}" type="button">${ICON.bell}<span>${t("notifyBtn")}</span></button><p>${t("notifyHint")}</p></div>`;
+}
+function bindNotify(scope = document) {
+  scope.querySelectorAll("[data-notify]").forEach((b) => b.onclick = async () => {
+    b.disabled = true;
+    const ok = await enablePush();
+    if (ok) { const box = b.closest(".nfy"); if (box) box.outerHTML = notifyBlock(+b.dataset.notify); }
+    else b.disabled = false;
+  });
+}
+async function enablePush(silent = false) {
+  const nos = S.mine.filter((m) => m.key === S.key).map((m) => m.no);
+  if (!nos.length || !pushSupported()) return false;
+  try {
+    const perm = Notification.permission === "granted" ? "granted" : silent ? "default" : await Notification.requestPermission();
+    if (perm !== "granted") { if (!silent) { toast(t("notifyDenied")); updateHome(); } return false; }
+    const reg = await navigator.serviceWorker.register("sw.js");
+    await navigator.serviceWorker.ready;
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      const raw = atob(VAPID_PUBLIC.replace(/-/g, "+").replace(/_/g, "/"));
+      sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: Uint8Array.from(raw, (c) => c.charCodeAt(0)) });
+    }
+    const j = sub.toJSON();
+    const clean = { endpoint: j.endpoint, keys: { p256dh: j.keys.p256dh, auth: j.keys.auth } };
+    const done = pushNos();
+    for (const no of nos) if (!done.includes(no) || !silent) await backend.savePush(S.key, no, clean, S.lang);
+    store.set("ambika_push", { key: S.key, nos: [...new Set([...done, ...nos])] });
+    if (!silent) { toast(t("notifyOn")); updateHome(); }
+    return true;
+  } catch (e) { console.error("push", e); if (!silent) toast(t("notifyFail")); return false; }
+}
+
+// Runs on the clinic console: whenever the queue moves, tell the patients whose turn is near.
+let pushBusy = false, pushAgain = false;
+async function pushTick() {
+  if (!(PUSH_URL || backend?.mode === "demo") || !isAdmin() || !S.day.current || !S.tokens.length) return;
+  if (pushBusy) { pushAgain = true; return; }
+  pushBusy = true;
+  const jobs = [], k = S.key;
+  try {
+    const avg = avgConsult();
+    for (const [id, p] of Object.entries(S.push || {})) {
+      const no = +id, tk = S.tokens.find((x) => x.no === no);
+      if (!tk || !p?.sub) continue;
+      const sent = p.sent || {}, a = aheadOf(no);
+      let stage = null;
+      if (tk.status === "in") { if (!sent.in) stage = "in"; }
+      else if (tk.status === "waiting") {
+        if (a <= 1) { if (!sent.next) stage = "next"; }
+        else if (a <= PUSH_SOON && !sent.soon && !sent.next) stage = "soon";
+      }
+      if (!stage || !(await backend.markPush(k, no, stage))) continue;
+      const L = p.lang === "en" ? "en" : "hi", key = { in: "pIn", next: "pNext", soon: "pSoon" }[stage];
+      const m = Math.max(5, Math.round((a * avg) / 5) * 5);
+      jobs.push({ id, day: k, stage, sub: p.sub, ttl: stage === "soon" ? 1200 : 900,
+        payload: { title: tl(L, key + "T", { n: no }), body: tl(L, key + "B", { a, m }), tag: "ambika-" + no, url: "./", urgent: stage !== "soon", lang: L === "hi" ? "hi-IN" : "en-IN" } });
+    }
+    if (jobs.length) await backend.sendPush(jobs.map(({ stage, ...j }) => j));
+  } catch (e) {
+    console.warn("push send failed", e);
+    for (const j of jobs) backend.markPush(k, j.id, j.stage, false).catch(() => {}); // retry on the next queue change
+  } finally { pushBusy = false; if (pushAgain) { pushAgain = false; pushTick(); } }
 }
 
 function updateHome(bump) {
@@ -836,11 +985,12 @@ function updateHome(bump) {
       big = a === 0 ? t("next") : a === 1 ? t("aheadOne") : t("ahead", { n: a });
       msg = S.day.current || nowMin() < S.settings.sitFrom ? t("est", { t: estFor(a) }) : "";
       const total = Math.max(1, m.no - 0), pct = Math.min(100, Math.max(4, ((total - a) / total) * 100));
-      bar = `<div class="bar"><i style="width:${pct}%"></i></div>`;
+      bar = `<div class="bar"><i style="width:${pct}%"></i></div>` + notifyBlock(m.no);
     }
     return `<div class="mtk ${status}"><div class="stub"><span>${t("yourNumber")}</span><b>${m.no}</b></div>
       <div class="body"><div class="who">${esc(m.name)}</div><div class="big">${big}</div>${msg ? `<div class="msg">${msg}</div>` : ""}${bar}</div></div>`;
   }).join("");
+  bindNotify($("#mine"));
 
   // booking state
   const open = rs === "open";
@@ -872,6 +1022,7 @@ async function onBook(e) {
       store.set("ambika_mine", S.mine);
     }
     $("#f-name").value = ""; $("#f-place").value = "";
+    if (pushSupported() && Notification.permission === "granted") enablePush(true); // already allowed: cover the new number too
     showTicket(r.no, name, place, r.existing);
     updateHome();
   } catch (err) {
@@ -895,9 +1046,11 @@ function showTicket(no, name, place, existing) {
         <div><b>${estFor(a)}</b><span>${t("estShort")}</span></div>
       </div>
     </div>
+    ${notifyBlock(no, true)}
     <p class="tnote">${t("screenshot")} · ${t("validToday")}<br>${t("doctorSits")} ${fmt(S.settings.sitFrom)} – ${fmt(S.settings.sitTo)}</p>
-    <div class="btns"><button class="btn primary block" data-close>${t("ok")}</button><button class="btn ghost block" data-another>${t("another")}</button></div>
+    <div class="btns"><button class="btn ${pushState(no) === "off" ? "ghost" : "primary"} block" data-close>${t("ok")}</button><button class="btn ghost block" data-another>${t("another")}</button></div>
   </div>`);
+  bindNotify($("#modal-root"));
   $("#modal-root [data-another]").onclick = () => { closeModal(); $("#f-name")?.focus(); $("#book")?.scrollIntoView({ behavior: "smooth" }); };
 }
 
@@ -1070,7 +1223,7 @@ function rowHTML(x) {
   const time = x.createdAt ? new Date(x.createdAt + IST * 60000).toISOString().slice(11, 16) : "";
   return `<div class="it ${x.status}">
     <div class="no">${x.no}</div>
-    <div><div class="nm">${esc(ct.name || "—")}<span class="st ${x.status}">${x.status === "skipped" ? "absent" : x.status === "in" ? "with doctor" : x.status}</span>${x.prio && x.status === "waiting" ? `<span class="st prio">priority</span>` : ""}</div>
+    <div><div class="nm">${esc(ct.name || "—")}<span class="st ${x.status}">${x.status === "skipped" ? "absent" : x.status === "in" ? "with doctor" : x.status}</span>${x.prio && x.status === "waiting" ? `<span class="st prio">priority</span>` : ""}${S.push?.[x.no] ? `<span class="st bell" title="Gets phone notifications">${ICON.bell}</span>` : ""}</div>
       <div class="meta">${esc(ct.place || "")}${ct.phone ? ` · <a class="nw" href="tel:+91${esc(ct.phone)}">${esc(ct.phone)}</a>` : ""}${time ? ` · <span class="nw">${fmt(fromHHMM(time))}</span>` : ""}<span class="src">${x.by === "walkin" ? "walk-in" : "online"}</span></div></div>
     <div class="acts">${x.status === "waiting" ? `<button class="ib" title="Call now" data-act="call" data-no="${x.no}">${ICON.call}</button>` : ""}<button class="ib" data-menu="${x.no}" title="More">${ICON.dots}</button></div>
   </div>`;
