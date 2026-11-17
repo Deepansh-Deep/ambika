@@ -1,7 +1,7 @@
 // Ambika Homoeopathy service worker: network-first app shell, never caches live data,
 // and shows the "your turn is near" phone notifications sent by the clinic console.
-const CACHE = "ambika-v2";
-const SHELL = ["./", "index.html", "doctor.jpg", "icon-192.png", "icon-512.png", "badge-72.png", "manifest.json"];
+const CACHE = "ambika-v3";
+const SHELL = ["./", "index.html", "doctor.jpg", "icon-192-v2.png", "icon-512-v2.png", "badge-72.png", "manifest.json"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", (e) => {
@@ -15,7 +15,7 @@ self.addEventListener("push", (e) => {
   try { d = e.data ? e.data.json() : {}; } catch { d = { body: e.data ? e.data.text() : "" }; }
   e.waitUntil(self.registration.showNotification(d.title || "Ambika Homoeopathy", {
     body: d.body || "",
-    icon: "icon-192.png",
+    icon: "icon-192-v2.png",
     badge: "badge-72.png",
     tag: d.tag || "ambika",
     renotify: true,
